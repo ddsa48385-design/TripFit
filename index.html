@@ -123,6 +123,102 @@ nav button,.chip,.tag{border-radius:8px}nav button:hover,.btn:hover,.card:hover,
 .cur{mix-blend-mode:difference}.cur i{background:#fff;box-shadow:none;border-radius:0}
 .cur i:first-child{left:-9px;top:-.5px;width:18px;height:1px}.cur i:last-child{left:-.5px;top:-9px;width:1px;height:18px}.cur.hov b,.cur.dn b{transform:none}
 .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}.plan{margin:0}.plan.hot{border:2px solid var(--sun)}.plan ul{padding-left:18px;color:var(--mut);min-height:90px}
+
+/* ===== v3: เด้งดึ๋ง ===== */
+:root{--spring:cubic-bezier(.34,1.7,.5,1);--soft-spring:cubic-bezier(.34,1.35,.64,1)}
+@keyframes rise{from{opacity:0;transform:translateY(26px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes popin{from{opacity:0;transform:translateY(24px) scale(.82)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes wob{0%,100%{transform:rotate(0)}25%{transform:rotate(-10deg) scale(1.12)}75%{transform:rotate(10deg) scale(1.12)}}
+@keyframes toastin{from{opacity:0;transform:translate(-50%,40px) scale(.8)}to{opacity:1;transform:translate(-50%,0)}}
+@keyframes msgin{from{opacity:0;transform:translateY(10px) scale(.7)}to{opacity:1;transform:none}}
+@keyframes ring{0%,88%,100%{transform:rotate(0)}91%{transform:rotate(-14deg)}94%{transform:rotate(12deg)}97%{transform:rotate(-6deg)}}
+
+/* ปุ่ม: กลม นูน กดแล้วยุบ ปล่อยแล้วเด้ง */
+.btn,.btn.sun,.btn.pink,.btn.out{border-radius:99px;padding:10px 22px;box-shadow:0 4px 0 var(--sh);transition:transform .45s var(--spring),box-shadow .2s,background .2s,filter .2s}
+.btn.sun{box-shadow:0 4px 0 #b98300}.btn.pink{box-shadow:0 4px 0 #9d3a24}.btn.out{box-shadow:0 4px 0 var(--line)}
+.btn:hover{transform:translateY(-3px) scale(1.06);filter:none}
+.btn:active{transform:translateY(3px) scale(.93);box-shadow:0 1px 0 var(--sh);transition-duration:.1s}
+.btn.sun:active{box-shadow:0 1px 0 #b98300}.btn.pink:active{box-shadow:0 1px 0 #9d3a24}.btn.out:active{box-shadow:0 1px 0 var(--line)}
+
+/* เมนู ชิป แท็ก */
+nav button,.chip{border-radius:99px;transition:transform .45s var(--spring),background .2s,color .2s}
+nav button:hover,.chip:hover{transform:translateY(-3px) scale(1.08)}
+nav button:active,.chip:active,.ct:active{transform:scale(.9);transition-duration:.1s}
+nav button.on{box-shadow:0 3px 0 var(--sh)}
+.tag{border-radius:99px}
+
+/* การ์ด: เด้งขึ้นตอนชี้ เอียงนิดๆ ตอนกด */
+.card,.panel,.step,.plan{border-width:2px}
+.card{border-radius:24px;transition:transform .5s var(--spring),border-color .2s,box-shadow .3s}
+.card:hover{transform:translateY(-8px) scale(1.03) rotate(-.6deg);border-color:var(--pri);box-shadow:0 18px 34px rgba(14,107,92,.2)}
+.card:nth-child(even):hover{transform:translateY(-8px) scale(1.03) rotate(.6deg)}
+.card:active{transform:scale(.96);transition-duration:.1s}
+.card .thumb{transition:transform .5s var(--spring)}.card:hover .thumb{transform:scale(1.06)}
+.panel,.step,.plan{border-radius:22px}
+.step{transition:transform .45s var(--spring)}.step:hover{transform:translateY(-4px) rotate(-1deg) scale(1.02)}
+.step i,.ci{transition:transform .5s var(--spring)}.step:hover i,.ct:hover .ci{animation:wob .6s var(--soft-spring)}
+.md{border-radius:28px}.thumb{height:150px}
+
+/* ไอคอนในหมวดหมู่ แบนเนอร์ ไทล์ */
+.ct{transition:transform .45s var(--spring),border-color .2s}.ct:hover{transform:translateY(-6px) scale(1.06)}
+.ct.on .ci{transform:scale(1.15);box-shadow:0 8px 18px rgba(14,107,92,.3)}
+.bn,.tile{transition:transform .5s var(--spring)}.bn:hover{transform:translateY(-6px) scale(1.03) rotate(-.5deg)}.tile:hover{transform:translateY(-5px) scale(1.04)}
+.bn:active,.tile:active{transform:scale(.95);transition-duration:.1s}
+
+/* ส่วนหัว ช่องค้นหา */
+.hero2{border-radius:32px;border-width:2px}
+.logo{transition:transform .5s var(--spring)}.logo:hover{transform:rotate(-3deg) scale(1.08)}.logo:active{transform:scale(.92)}
+.logo svg{transition:transform .5s var(--spring);transform-origin:left}.logo:hover svg{transform:scaleX(1.12) rotate(-1.5deg)}
+.sbox>input{border-radius:99px;padding-left:22px;border-width:2px;box-shadow:0 10px 28px rgba(14,107,92,.14);transition:transform .45s var(--spring),box-shadow .3s,border-color .2s}
+.sbox>input:focus{transform:scale(1.025);border-color:var(--pri);box-shadow:0 14px 34px rgba(14,107,92,.25);outline:0}
+input,select,textarea{border-radius:16px;transition:transform .4s var(--spring),border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--pri);box-shadow:0 0 0 4px color-mix(in srgb,var(--pri) 18%,transparent);outline:0}
+.sg{border-radius:22px;animation:popin .35s var(--spring)}.sg button{border-radius:14px;transition:transform .35s var(--spring),background .15s}.sg button:hover{transform:translateX(4px)}
+
+/* เข้าหน้าใหม่: ของเด้งขึ้นมาทีละชิ้น */
+#app.pop :is(.card,.step,.panel,.plan,.bn,.ct,.tile,.hero2,.note,.empty){animation:rise .65s var(--spring) backwards}
+#app.pop .hero2{animation-name:popin}
+#app.pop :is(.panel,.plan):nth-of-type(n){animation-delay:.05s}
+#app.pop :is(.grid,.steps,.tiles,.plans,.bns,.crow)>*:nth-child(1){animation-delay:0.04s}
+#app.pop :is(.grid,.steps,.tiles,.plans,.bns,.crow)>*:nth-child(2){animation-delay:0.08s}
+#app.pop :is(.grid,.steps,.tiles,.plans,.bns,.crow)>*:nth-child(3){animation-delay:0.12s}
+#app.pop :is(.grid,.steps,.tiles,.plans,.bns,.crow)>*:nth-child(4){animation-delay:0.16s}
+#app.pop :is(.grid,.steps,.tiles,.plans,.bns,.crow)>*:nth-child(5){animation-delay:0.2s}
+#app.pop :is(.grid,.steps,.tiles,.plans,.bns,.crow)>*:nth-child(6){animation-delay:0.24s}
+#app.pop :is(.grid,.steps,.tiles,.plans,.bns,.crow)>*:nth-child(7){animation-delay:0.28s}
+#app.pop :is(.grid,.steps,.tiles,.plans,.bns,.crow)>*:nth-child(8){animation-delay:0.32s}
+#app.pop :is(.grid,.steps,.tiles,.plans,.bns,.crow)>*:nth-child(9){animation-delay:0.36s}
+#app.pop :is(.grid,.steps,.tiles,.plans,.bns,.crow)>*:nth-child(10){animation-delay:0.4s}
+#app.pop :is(.grid,.steps,.tiles,.plans,.bns,.crow)>*:nth-child(11){animation-delay:0.44s}
+#app.pop :is(.grid,.steps,.tiles,.plans,.bns,.crow)>*:nth-child(12){animation-delay:0.48s}
+
+/* ป๊อปอัป ทูสต์ แชท */
+.ov{animation:fade .2s ease-out}
+.md{animation:popin .5s var(--spring)}
+.toast{animation:toastin .55s var(--spring)}
+.bub{border-radius:50%;box-shadow:0 5px 0 #9d3a24,0 10px 24px rgba(0,0,0,.25);transition:transform .45s var(--spring);animation:bob 2.6s ease-in-out infinite}
+.bub:hover{animation:none;transform:scale(1.15) rotate(-8deg)}.bub:active{animation:none;transform:scale(.88)}
+.bub s{animation:ring 4s ease-in-out infinite;transform-origin:50% 50%}
+.cw{border-radius:26px;animation:popin .5s var(--spring);transform-origin:bottom right}
+.ch button{transition:transform .35s var(--spring)}.ch button:hover{transform:scale(1.2) rotate(8deg)}.ch button:active{transform:scale(.85)}
+.th{transition:transform .4s var(--spring)}.th:hover{transform:translateX(5px) scale(1.02)}.th:active{transform:scale(.96)}
+.cl .m:last-child{animation:msgin .45s var(--spring)}
+.m{border-radius:20px}.m.me{border-bottom-right-radius:6px}.m:not(.me){border-bottom-left-radius:6px}
+
+/* อีโมจิตัวใหญ่ลอยเบาๆ */
+.empty big,.lock big{display:block;animation:bob 2.4s ease-in-out infinite}
+.price{display:inline-block;transition:transform .4s var(--spring)}.card:hover .price{transform:scale(1.15)}
+.av{transition:transform .4s var(--spring)}.av:hover{transform:scale(1.2) rotate(-6deg)}
+
+/* เคอร์เซอร์บวก: แบบเดิม บางๆ ไม่ขยาย */
+.cur{mix-blend-mode:difference}.cur i{background:#fff;box-shadow:none;border-radius:0}
+.cur i:first-child{left:-9px;top:-.5px;width:18px;height:1px}.cur i:last-child{left:-.5px;top:-9px;width:1px;height:18px}.cur.hov b,.cur.dn b{transform:none}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01s!important}
+}
 </style>
 </head>
 <body>
@@ -145,6 +241,8 @@ firebase.initializeApp({
 const fAuth=firebase.auth(),fDb=firebase.firestore();
 const authReady=new Promise(r=>{const off=fAuth.onAuthStateChanged(u=>{off();r(u)})});
 function ezLogin(){fAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(()=>location.reload()).catch(e=>alert("เข้าสู่ระบบไม่สำเร็จ: "+(e.code||e.message)))}
+function popIn(){const a=document.getElementById("app");if(!a)return;a.classList.remove("pop");void a.offsetWidth;a.classList.add("pop");clearTimeout(popIn.t);popIn.t=setTimeout(()=>a.classList.remove("pop"),1200)}
+popIn();
 function ezLogout(){fAuth.signOut().then(()=>location.reload())}
 window.claude={use:async n=>{
   if(n==="db")return fDb;
@@ -173,7 +271,7 @@ const pair=o=>[myId,o].sort().join("_").replace(/[^\w]/g,"");
 function toast(t){const d=document.createElement("div");d.className="toast";d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),2400)}
 function modal(h){const o=document.createElement("div");o.className="ov";o.innerHTML=`<div class="md">${h}</div>`;o.onclick=e=>{if(e.target===o)o.remove()};document.body.appendChild(o);return o}
 const closeM=()=>document.querySelectorAll(".ov").forEach(o=>o.remove());
-const go=v=>{view=v;render()};
+const go=v=>{view=v;render();popIn()};
 function pick(max,cb){const i=document.createElement("input");i.type="file";i.accept="image/*";i.onchange=()=>{const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*k;c.height=im.height*k;c.getContext("2d").drawImage(im,0,0,c.width,c.height);cb(c.toDataURL("image/jpeg",.72))};im.src=r.result};r.readAsDataURL(f)};i.click()}
 async function boot(){
   try{user=await claude.use("user");db=await claude.use("db")}catch(e){}
