@@ -129,8 +129,36 @@ nav button,.chip,.tag{border-radius:8px}nav button:hover,.btn:hover,.card:hover,
 <div class="top"><div class="bar"><div class="logo" onclick="go('home')" aria-label="EZWORK"><span class="ez">EZ</span><span class="wk">work</span><svg viewBox="0 0 120 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 8c18-7 36-7 54-2s40 3 60-3" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><nav id="nav"></nav><div class="row" id="me"></div></div></div>
 <main id="app"></main>
 <div class="fab" id="fab"></div>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
-const FEE_SELL=0.10,FEE_TOP=0.03,BASE="https://claude.ai/artifact/LZyoyuHep9QMH9MraDVevu";
+/* ===== Firebase adapter: แทนที่ระบบ claude.ai เดิม (claude.use("db"/"user")) ===== */
+firebase.initializeApp({
+  apiKey:"AIzaSyCWtbg6EmYxGrlxYqMrFq_zlBLOWz7WfC0",
+  authDomain:"krjnp-fb7e2.firebaseapp.com",
+  projectId:"krjnp-fb7e2",
+  storageBucket:"krjnp-fb7e2.firebasestorage.app",
+  messagingSenderId:"591931413257",
+  appId:"1:591931413257:web:b500a9f7d9d4b4a68db9d8"
+});
+const fAuth=firebase.auth(),fDb=firebase.firestore();
+const authReady=new Promise(r=>{const off=fAuth.onAuthStateChanged(u=>{off();r(u)})});
+function ezLogin(){fAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(()=>location.reload()).catch(e=>alert("เข้าสู่ระบบไม่สำเร็จ: "+(e.code||e.message)))}
+function ezLogout(){fAuth.signOut().then(()=>location.reload())}
+window.claude={use:async n=>{
+  if(n==="db")return fDb;
+  if(n==="user")return{
+    id:async()=>{const u=await authReady;return u?u.uid:null},
+    me:async()=>{const u=await authReady;return{name:(u&&u.displayName)||""}},
+    isOwner:async()=>{const u=await authReady;if(!u)return false;try{return (await fDb.doc("admins/"+u.uid).get()).exists}catch(e){return false}},
+    canEdit:async()=>false
+  };
+  return null;
+}};
+</script>
+<script>
+const FEE_SELL=0.10,FEE_TOP=0.03,BASE=location.origin+location.pathname;
 const CATS={"ออกแบบ":["🎨","#ffd9e2"],"โปรแกรมมิ่ง":["💻","#d6e6ff"],"วิดีโอ/เสียง":["🎬","#e5dcff"],"การตลาด":["📣","#ffeab0"],"เขียน/แปล":["✍️","#cdf5e8"],"ที่ปรึกษา":["💡","#ffe0c7"]};
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -167,7 +195,7 @@ function render(){
   $("#nav").innerHTML=tabs.map(t=>`<button class="${view===t[0]?"on":""}" onclick="go('${t[0]}')">${t[1]}</button>`).join("");
   $("#me").innerHTML=myId?`<span class="tag">${PLANS[cur(myId)].n} · ${baht(W.bal||0)}</span><button class="row" style="border:0;background:none;gap:8px" onclick="profile()">${pav(myId)}<b>${esc(pname(myId))}</b></button>`:"";
   const a=$("#app");
-  if(!myId){a.innerHTML=`<div class="empty"><big>🔐</big><h2>กรุณาเข้าสู่ระบบ claude.ai</h2><p>เปิดหน้านี้ในบัญชี claude.ai ที่ล็อกอินแล้ว จึงจะใช้ระบบจ้างงานได้</p></div>`;return}
+  if(!myId){a.innerHTML=`<div class="empty"><big>🔐</big><h2>เข้าสู่ระบบเพื่อใช้งาน</h2><p>ล็อกอินด้วยบัญชี Google เพื่อเข้าตลาดจ้างงาน</p><button class="btn sun" onclick="ezLogin()">เข้าสู่ระบบด้วย Google</button></div>`;return}
   a.innerHTML=({home,shop,orders:ordersV,wallet})[view]();
 }
 const stepsH=`<div class="steps"><div class="step"><i style="background:#cdf5e8">💰</i><div><b>1. เติมเงิน</b><span>เติมเข้ากระเป๋าของคุณ</span></div></div><div class="step"><i style="background:#ffeab0">🔎</i><div><b>2. เลือกงาน</b><span>ดูบริการแล้วกดจ้าง</span></div></div><div class="step"><i style="background:#ffd9e2">✅</i><div><b>3. รับงาน</b><span>งานเสร็จกดยืนยัน เงินถึงผู้รับจ้าง</span></div></div></div>`;
@@ -325,7 +353,7 @@ function render(){
   $("#nav").innerHTML=tabs.map(t=>`<button class="${view===t[0]?"on":""}" onclick="go('${t[0]}')">${t[1]}</button>`).join("");
   $("#me").innerHTML=myId?`${ADM?`<button class="btn ${E?"sun":"out"}" style="padding:6px 14px" onclick="E=!E;render()">✎ ${E?"ออกจากโหมดแก้ไข":"แก้ไขหน้าเว็บ"}</button>`:""}<span class="tag">${PLANS[cur(myId)].n} · ${baht(W.bal||0)}</span><button class="row" style="border:0;background:none;gap:8px" onclick="profile()">${pav(myId)}<b>${esc(pname(myId))}</b></button>`:"";
   const a=$("#app");
-  if(!myId){a.innerHTML=`<div class="empty"><big>🔐</big><h2>กรุณาเข้าสู่ระบบ claude.ai</h2><p>เปิดหน้านี้ในบัญชี claude.ai ที่ล็อกอินแล้ว จึงจะใช้ระบบจ้างงานได้</p></div>`;return}
+  if(!myId){a.innerHTML=`<div class="empty"><big>🔐</big><h2>เข้าสู่ระบบเพื่อใช้งาน</h2><p>ล็อกอินด้วยบัญชี Google เพื่อเข้าตลาดจ้างงาน</p><button class="btn sun" onclick="ezLogin()">เข้าสู่ระบบด้วย Google</button></div>`;return}
   if(banned){a.innerHTML=`<div class="lock"><big style="font-size:60px">🚫</big><h2>บัญชีนี้ถูกระงับการใช้งาน</h2><p class="mut">${esc((B[myId]||{}).why||"ติดต่อผู้ดูแลระบบ")}</p></div>`;$("#fab").innerHTML="";return}
   if(view==="home"&&document.activeElement&&document.activeElement.id==="hs"){upG();return}
   a.innerHTML=({home,shop,orders:ordersV,wallet,admin:adminV,plans:plansV})[view]();if(view==="home")typing()}
