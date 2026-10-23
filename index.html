@@ -1,217 +1,390 @@
-<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>TripFit – วางแผนเที่ยวให้พอดีงบ</title>
-<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EZWORK – ตลาดจ้างงานฟรีแลนซ์</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@500;600;700&family=Bricolage+Grotesque:wght@300;800&family=Noto+Sans+Thai:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#fbf6ec;--cd:#fff;--ink:#12302d;--mu:#5f7471;--ac:#0f766e;--at:#fff;--go:#e8a317;--co:#d9452f;--ln:#e7dfcf;--hero:linear-gradient(135deg,#0f766e,#134e4a 60%,#e8a317);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1a19;--cd:#15292a;--ink:#eaf3f1;--mu:#9ab5b1;--ac:#2dd4bf;--at:#06201d;--go:#f5b83d;--co:#ff8a75;--ln:#264341}}
-:root[data-theme=dark]{--bg:#0d1a19;--cd:#15292a;--ink:#eaf3f1;--mu:#9ab5b1;--ac:#2dd4bf;--at:#06201d;--go:#f5b83d;--co:#ff8a75;--ln:#264341}
-html,body{margin:0}body{background:var(--bg);color:var(--ink);font:400 16px/1.55 Prompt,"Noto Sans Thai",Tahoma,sans-serif;padding-bottom:84px}
-main{max-width:760px;margin:auto;padding:14px}header{max-width:760px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:12px 14px 0}
-.lg{font-weight:700;font-size:20px}.lg i{font-style:normal;color:var(--go)}
-button,a.b{font:inherit;cursor:pointer}.b{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 16px;border:0;border-radius:12px;background:var(--ac);color:var(--at);font-weight:500;text-decoration:none}
-.b.s{background:transparent;color:var(--ink);border:1px solid var(--ln)}.b.sm{min-height:36px;padding:0 11px;font-size:14px}.b.g{background:var(--go);color:#2a1d00}
-.c{background:var(--cd);border:1px solid var(--ln);border-radius:16px;padding:14px;margin:0 0 12px}.m{color:var(--mu);font-size:14px}
-h1,h2,h3{line-height:1.25;margin:.2em 0 .4em}h2{font-size:22px}h3{font-size:17px}
-.hero{background:var(--hero);color:#fff;border-radius:22px;padding:24px 18px;margin-bottom:12px}.hero h1{font-size:28px}.hero .m{color:#e6f4f1}
-.pill{display:inline-block;background:rgba(255,255,255,.18);border-radius:99px;padding:3px 11px;margin:3px 3px 0 0;font-size:13px}
-.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{min-height:44px;padding:0 14px;border-radius:99px;border:1px solid var(--ln);background:var(--cd);color:var(--ink)}.chip.on{background:var(--ac);color:var(--at);border-color:var(--ac)}
-.row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}.g3{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
-.pg{height:8px;background:var(--ln);border-radius:9px;overflow:hidden}.pg i{display:block;height:100%;background:var(--ac);border-radius:9px;transition:width .4s}.pg.r i{background:var(--co)}
-.st{display:flex;gap:10px;animation:up .35s both}.tt{min-width:54px;font-weight:700;color:var(--ac)}.tt small{display:block;color:var(--mu);font-weight:400}.bd{flex:1;min-width:0}
-@keyframes up{from{opacity:0;transform:translateY(8px)}}.em{font-size:22px}
-input[type=range]{width:100%;accent-color:var(--ac);height:32px}input[type=date],input[type=search]{font:inherit;min-height:44px;padding:0 10px;border-radius:10px;border:1px solid var(--ln);background:var(--cd);color:var(--ink)}
-.sp{display:flex;align-items:center;gap:12px}.sp b{min-width:28px;text-align:center;font-size:20px}.sp button{width:44px;height:44px;border-radius:12px;border:1px solid var(--ln);background:var(--cd);color:var(--ink);font-size:20px}
-.tabs{display:flex;gap:8px;overflow-x:auto;margin-bottom:10px}.tabs .chip{white-space:nowrap}
-.warn{background:#fff3d6;color:#5a3d00;border-radius:12px;padding:10px 12px;margin:0 0 10px;font-size:14px}.bad{background:#ffe1dc;color:#7a1a0d}
-nav{position:fixed;left:0;right:0;bottom:0;background:var(--cd);border-top:1px solid var(--ln);display:flex;justify-content:space-around;padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));z-index:5}
-nav button{flex:1;border:0;background:none;color:var(--mu);font-size:11px;min-height:48px;border-radius:10px}nav button span{display:block;font-size:20px}nav button.on{color:var(--ac);font-weight:700}
-#m{display:none;position:fixed;inset:0;background:#0009;z-index:9;align-items:flex-end;justify-content:center}#m.on{display:flex}.md{background:var(--cd);width:100%;max-width:560px;max-height:86vh;overflow:auto;border-radius:20px 20px 0 0;padding:18px;position:relative;animation:up .25s}.md .x{position:absolute;right:10px;top:10px;border:0;background:none;color:var(--ink);font-size:20px;width:44px;height:44px}
-#t{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:#12302d;color:#fff;padding:10px 16px;border-radius:12px;opacity:0;pointer-events:none;transition:.25s;z-index:10;max-width:90%;font-size:14px}#t.on{opacity:1}
-table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:8px 6px;border-bottom:1px solid var(--ln);text-align:left}
-.sc{background:var(--hero);color:#fff;border-radius:18px;padding:18px}.k{font-size:26px;font-weight:700}.ok{color:var(--ac)}.no{color:var(--co)}
-svg text{font-family:inherit}
+:root{color-scheme:light;--bg:#f3f9ff;--card:#fff;--ink:#16304f;--mut:#6a7f99;--line:#dbe8f7;--pri:#2e7dff;--priInk:#fff;--sun:#ffc938;--pink:#ff6f91;--mint:#2ed3a5;--soft:#e6f1ff;--sh:#1c5bd1;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0d1829;--card:#15243a;--ink:#eaf2ff;--mut:#9fb3cf;--line:#26395a;--soft:#1b2f4d;--sh:#1647a8}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0d1829;--card:#15243a;--ink:#eaf2ff;--mut:#9fb3cf;--line:#26395a;--soft:#1b2f4d;--sh:#1647a8}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.6 "Noto Sans Thai",system-ui,sans-serif}
+h1,h2,h3,.logo,.btn,.price{font-family:'IBM Plex Sans Thai',"Noto Sans Thai",sans-serif}h1,h2,h3{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px)}
+.bar{max-width:1120px;margin:auto;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-size:26px;font-weight:700;color:var(--pri);cursor:pointer}.logo b{background:var(--sun);color:#3a2b00;border-radius:10px;padding:0 8px;margin-left:2px}
+nav{display:flex;gap:6px;flex:1;flex-wrap:wrap}
+nav button{border:0;background:none;padding:8px 14px;border-radius:99px;color:var(--mut);font-weight:500}
+nav button.on{background:var(--pri);color:var(--priInk)}
+.btn{border:0;border-radius:99px;padding:10px 20px;font-weight:600;background:var(--pri);color:var(--priInk);box-shadow:0 4px 0 var(--sh);transition:transform .1s,box-shadow .1s}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--sh)}
+.btn.sun{background:var(--sun);color:#3a2b00;box-shadow:0 4px 0 #d99f00}.btn.pink{background:var(--pink);box-shadow:0 4px 0 #cf4468}
+.btn.out{background:var(--card);color:var(--pri);box-shadow:0 4px 0 var(--line);border:2px solid var(--line)}
+.btn:disabled{opacity:.5}
+main{max-width:1120px;margin:auto;padding:8px 16px 110px}
+.hero{border-radius:32px;padding:38px 30px;color:#fff;background:radial-gradient(circle at 90% 10%,var(--sun) 0 70px,transparent 71px),radial-gradient(circle at 80% 100%,var(--pink) 0 110px,transparent 111px),var(--pri);position:relative;overflow:hidden}
+.hero h1{font-size:clamp(28px,5vw,46px);line-height:1.25;max-width:12em}.hero p{max-width:30em;margin:10px 0 18px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:18px 0}
+.step{background:var(--card);border-radius:22px;padding:16px;display:flex;gap:12px;align-items:center;border:2px solid var(--line)}
+.step i{font-style:normal;font-size:30px;width:52px;height:52px;border-radius:16px;display:grid;place-items:center;flex:none}
+.step b{display:block;font-family:'IBM Plex Sans Thai'}.step span{color:var(--mut);font-size:13px}
+.search{display:flex;gap:8px;max-width:520px}.search input{flex:1;border:0;border-radius:99px;padding:12px 18px;color:#16304f;background:#fff}
+.cats{display:flex;gap:8px;overflow-x:auto;padding:6px 2px 14px}
+.chip{white-space:nowrap;border:2px solid var(--line);background:var(--card);padding:6px 16px;border-radius:99px;font-weight:500}
+.chip.on{background:var(--sun);border-color:var(--sun);color:#3a2b00}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:24px;overflow:hidden;cursor:pointer;transition:transform .15s,border-color .15s}
+.card:hover{transform:translateY(-4px);border-color:var(--pri)}
+.thumb{height:150px;display:grid;place-items:center;font-size:56px;background-size:cover;background-position:center}
+.cb{padding:14px}.cb h3{font-size:15px;line-height:1.4;height:42px;overflow:hidden}
+.who{display:flex;align-items:center;gap:8px;color:var(--mut);font-size:13px;margin-top:8px}
+.av{width:28px;height:28px;border-radius:50%;background:var(--pink) center/cover;color:#fff;display:grid;place-items:center;font:600 13px 'IBM Plex Sans Thai';flex:none}
+.av.l{width:84px;height:84px;font-size:32px}
+.price{font-weight:700;color:var(--pri);font-size:18px}
+.tag{font-size:12px;padding:2px 10px;border-radius:99px;background:var(--soft);color:var(--pri);font-weight:500}
+.panel{background:var(--card);border:2px solid var(--line);border-radius:24px;padding:20px;margin-bottom:16px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.sp{flex:1}
+label{display:block;font-size:13px;color:var(--mut);margin:12px 0 4px}
+input,select,textarea{width:100%;padding:10px 14px;border:2px solid var(--line);border-radius:14px;background:var(--bg)}
+.bal{font:700 44px 'IBM Plex Sans Thai';color:var(--pri)}
+.empty{text-align:center;color:var(--mut);padding:44px 10px}.empty big{font-size:54px;display:block}
+.ov{position:fixed;inset:0;background:rgba(10,25,50,.55);display:grid;place-items:center;padding:16px;z-index:20}
+.md{background:var(--card);border-radius:28px;max-width:500px;width:100%;max-height:92vh;overflow:auto;padding:22px}
+.md .im{height:200px;border-radius:20px;display:grid;place-items:center;font-size:70px;background-size:cover;background-position:center;margin-bottom:12px}
+.up{border:2px dashed var(--line);border-radius:16px;padding:14px;text-align:center;color:var(--mut);cursor:pointer;background-size:cover;background-position:center}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 20px;border-radius:99px;z-index:40}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:15}
+.bub{width:62px;height:62px;border-radius:50%;border:0;font-size:28px;background:var(--pink);box-shadow:0 5px 0 #cf4468,0 10px 24px rgba(0,0,0,.2);position:relative}
+.bub s{position:absolute;top:-4px;right:-4px;background:var(--sun);color:#3a2b00;text-decoration:none;font:700 12px 'IBM Plex Sans Thai';border-radius:99px;padding:1px 7px}
+.cw{width:min(350px,calc(100vw - 32px));height:min(480px,calc(100vh - 110px));background:var(--card);border:2px solid var(--line);border-radius:26px;box-shadow:0 12px 40px rgba(0,0,0,.25);display:flex;flex-direction:column;overflow:hidden}
+.ch{background:var(--pri);color:var(--priInk);padding:12px 14px;display:flex;align-items:center;gap:8px;font-family:'IBM Plex Sans Thai';font-weight:600}
+.ch button{background:rgba(255,255,255,.2);border:0;color:inherit;border-radius:50%;width:30px;height:30px}
+.cl{flex:1;overflow:auto;padding:10px;display:flex;flex-direction:column;gap:6px}
+.th{display:flex;gap:10px;align-items:center;border:0;background:var(--soft);padding:10px;border-radius:16px;text-align:left;width:100%}
+.th small{display:block;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px}
+.m{max-width:80%;padding:8px 13px;border-radius:18px;background:var(--soft);word-break:break-word}.m.me{align-self:flex-end;background:var(--pri);color:var(--priInk)}
+.snd{display:flex;gap:6px;padding:10px;border-top:2px solid var(--line)}.snd .btn{padding:8px 16px}
+@media(prefers-reduced-motion:reduce){.card,.btn{transition:none}}
+/* v2 */
+body.cc,body.cc *{cursor:none!important}
+.cur{position:fixed;left:0;top:0;width:0;height:0;z-index:99;pointer-events:none}
+.cur b{display:block;transition:transform .5s cubic-bezier(.34,1.9,.5,1)}
+.cur i{position:absolute;background:var(--pink);border-radius:2px;box-shadow:0 0 0 1.5px #fff,0 2px 6px rgba(0,0,0,.25)}
+.cur i:first-child{left:-10px;top:-1.5px;width:20px;height:3px}.cur i:last-child{left:-1.5px;top:-10px;width:3px;height:20px}
+.cur.hov b{transform:scale(1.8) rotate(90deg)}.cur.dn b{transform:scale(.7) rotate(90deg);transition-duration:.12s}
+.top{background:var(--card);border-bottom:1px solid var(--line)}
+nav button,.btn,.chip{transition:transform .4s cubic-bezier(.34,1.8,.5,1),background .2s,box-shadow .1s}
+nav button:hover,.btn:hover{transform:translateY(-3px) scale(1.05)}
+.card,.tile,.bn,.ct{transition:transform .45s cubic-bezier(.34,1.7,.5,1),border-color .2s,box-shadow .3s}
+.card:hover{transform:translateY(-8px) scale(1.025);box-shadow:0 18px 34px rgba(30,80,170,.18)}
+.mut{color:var(--mut);font-size:13px}
+.note{background:var(--sun);color:#3a2b00;border-radius:14px;padding:8px 16px;margin:8px 0;text-align:center;font-weight:500}
+.hero2{margin-top:10px;border-radius:32px;padding:54px 22px 44px;text-align:center;position:relative;background:radial-gradient(circle at 15% 0,color-mix(in srgb,var(--pri) 28%,transparent),transparent 55%),radial-gradient(circle at 88% 20%,color-mix(in srgb,var(--pink) 24%,transparent),transparent 50%),var(--card);border:1px solid var(--line);background-size:cover;background-position:center}
+.hero2.img{color:#fff}.hero2 h1{font-size:clamp(26px,5vw,44px);line-height:1.25;max-width:16em;margin:6px auto}
+.hero2 .ty{font:600 clamp(24px,4.5vw,40px) 'IBM Plex Sans Thai';color:var(--pri);min-height:1.5em;margin:10px 0 22px}.hero2.img .ty{color:var(--sun)}
+.ty b::after{content:"";display:inline-block;width:3px;height:1em;background:currentColor;margin-left:3px;vertical-align:-.12em;animation:bk 1s steps(2) infinite}@keyframes bk{50%{opacity:0}}
+.sbox{position:relative;max-width:640px;margin:auto;text-align:left}
+.sbox>input{padding:16px 50px 16px 52px;border-radius:99px;border:2px solid var(--line);box-shadow:0 10px 30px rgba(30,80,170,.16);font-size:16px;color:#16304f;background:#fff}
+.sbox>span{position:absolute;left:20px;top:14px;font-size:20px}.sbox>.x{position:absolute;right:14px;top:12px;border:0;background:var(--soft);border-radius:50%;width:32px;height:32px}
+.sg{display:none;position:absolute;left:12px;right:12px;top:calc(100% + 6px);background:var(--card);color:var(--ink);border:2px solid var(--line);border-radius:20px;box-shadow:0 18px 40px rgba(0,0,0,.2);padding:6px;z-index:12;overflow:hidden}
+.sbox:focus-within .sg{display:block}.sg button{display:flex;width:100%;gap:8px;border:0;background:none;padding:10px 14px;border-radius:12px;text-align:left}.sg button:hover{background:var(--soft)}.sg small{margin-left:auto;color:var(--pri);font-weight:600}
+.ed{outline:2px dashed var(--pri);outline-offset:3px;border-radius:8px;position:relative;cursor:pointer}
+.ed::after{content:"✎";position:absolute;top:-12px;right:-8px;background:var(--pri);color:#fff;font-size:11px;border-radius:50%;width:22px;height:22px;display:grid;place-items:center}
+.bns{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 14px}
+.bn{flex:0 0 min(420px,86%);height:150px;border-radius:24px;padding:20px;color:#fff;display:flex;align-items:flex-end;scroll-snap-align:start;position:relative;cursor:pointer}
+.bn b{font:700 22px/1.2 'IBM Plex Sans Thai';display:block;text-shadow:0 2px 8px rgba(0,0,0,.3)}.bn span{font-size:14px;opacity:.95}.bn:hover{transform:translateY(-5px) scale(1.02)}
+.bn.add{background:var(--soft);color:var(--pri);justify-content:center;align-items:center;border:2px dashed var(--pri);font-weight:600}
+.xb{position:absolute;top:10px;right:10px;border:0;border-radius:50%;width:30px;height:30px;background:#fff;color:#cf4468}
+.crow{display:flex;gap:6px;overflow-x:auto;padding:10px 4px 14px}
+.ct{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:6px;min-width:96px;padding:8px 6px;border-bottom:3px solid transparent;font-size:13px;font-weight:500}
+.ct:hover{transform:translateY(-5px)}.ct.on{border-color:var(--pri);color:var(--pri)}
+.ci{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;font-size:28px;background-size:cover;background-position:center;box-shadow:0 6px 14px rgba(30,80,170,.15)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:6px 0 22px}
+.tile{height:84px;border-radius:16px;padding:14px;color:#fff;display:flex;gap:10px;align-items:flex-end;font:600 17px 'IBM Plex Sans Thai';cursor:pointer;position:relative}
+.tile:hover{transform:translateY(-5px) scale(1.03)}
+.sw{display:flex;gap:10px;align-items:center;margin:6px 0;font-size:15px;color:var(--ink)}.sw input{width:auto}
+.lock{text-align:center;padding:90px 10px}
+@media(prefers-reduced-motion:reduce){.cur b{transition:none}.ty b::after{animation:none}}
 
-/* ===== v3 soft UI ===== */
-:root{--sh:0 10px 28px -14px rgba(10,60,55,.35)}
-body{background:radial-gradient(900px 420px at 90% -8%,color-mix(in srgb,var(--go) 24%,transparent),transparent 65%),radial-gradient(800px 480px at -10% 6%,color-mix(in srgb,var(--ac) 20%,transparent),transparent 65%),var(--bg);background-attachment:fixed}
-h1,h2,h3{letter-spacing:-.01em}.lg{background:linear-gradient(90deg,var(--ac),var(--go));-webkit-background-clip:text;background-clip:text;color:transparent}.lg i{color:inherit}
-.c{border-radius:24px;padding:18px;box-shadow:var(--sh);border-color:color-mix(in srgb,var(--ln) 60%,transparent);transition:transform .2s,box-shadow .2s}
-button.c:hover{transform:translateY(-3px)}button.c:active{transform:scale(.98)}
-.hero{position:relative;overflow:hidden;border-radius:30px;padding:32px 22px;box-shadow:0 22px 44px -20px #0f766e}.hero>*{position:relative}
-.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:#fff;opacity:.11}.hero:before{width:240px;height:240px;right:-70px;top:-90px}.hero:after{width:150px;height:150px;right:60px;bottom:-80px;opacity:.08}
-.b{border-radius:99px;background:linear-gradient(135deg,var(--ac),color-mix(in srgb,var(--ac) 80%,var(--go)));box-shadow:0 8px 18px -8px var(--ac);transition:transform .15s,box-shadow .15s}.b:hover{transform:translateY(-1px)}.b:active{transform:scale(.96)}
-.b.s{background:transparent;box-shadow:none}.b.s:hover{background:color-mix(in srgb,var(--ac) 10%,transparent)}.b.g{background:linear-gradient(135deg,var(--go),#f59e0b);box-shadow:0 8px 18px -8px var(--go)}
-.chip{transition:.18s;background:color-mix(in srgb,var(--cd) 90%,var(--ac) 4%)}.chip:hover{transform:translateY(-1px);border-color:var(--ac)}.chip:active{transform:scale(.96)}.chip.on{background:linear-gradient(135deg,var(--ac),color-mix(in srgb,var(--ac) 80%,var(--go)));box-shadow:0 8px 16px -8px var(--ac);font-weight:500}
-.pg{height:10px}.pg i{background:linear-gradient(90deg,var(--ac),var(--go))}.pg.r i{background:linear-gradient(90deg,var(--co),var(--go))}
-.st{border-left:4px solid var(--ac)}.st:nth-child(2){animation-delay:.04s}.st:nth-child(3){animation-delay:.08s}.st:nth-child(4){animation-delay:.12s}.st:nth-child(5){animation-delay:.16s}
-.tt{background:color-mix(in srgb,var(--ac) 12%,transparent);border-radius:14px;padding:6px 8px;align-self:flex-start;text-align:center}
-.warn{border-radius:16px;border-left:4px solid var(--go)}.bad{border-left-color:var(--co)}
-input[type=date],input[type=search]{border-radius:99px;padding:0 16px}input[type=search]:focus,input[type=date]:focus{outline:2px solid var(--ac);outline-offset:1px}
-.sp button{border-radius:99px;transition:.15s}.sp button:active{transform:scale(.9)}
-nav{left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));max-width:560px;margin:auto;padding:6px;border:1px solid var(--ln);border-radius:26px;box-shadow:0 16px 36px -12px #0007;background:color-mix(in srgb,var(--cd) 85%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
-nav button{border-radius:20px;transition:.2s}nav button.on{background:color-mix(in srgb,var(--ac) 16%,transparent)}
-#t{bottom:110px;border-radius:99px}.md{border-radius:28px 28px 0 0}.sc{border-radius:24px;box-shadow:var(--sh)}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style></head><body>
-<header><div class="lg">Trip<i>Fit</i> 💎</div><button class="b s sm" onclick="A.th()" aria-label="โหมดมืด/สว่าง">🌓</button></header>
-<main id="app"></main><div id="m"></div><div id="t"></div>
-<nav><button data-v="home" onclick="A.go('home')"><span>🏠</span>หน้าแรก</button><button data-v="wiz" onclick="A.go('wiz')"><span>🧭</span>วางแผน</button><button data-v="res" onclick="A.go('res')"><span>🗺️</span>ทริป</button><button data-v="prem" onclick="A.go('prem')"><span>⭐</span>Premium</button><button data-v="adm" onclick="A.go('adm')"><span>📊</span>ผู้ดูแล</button><button data-v="abt" onclick="A.go('abt')"><span>ℹ️</span>โครงการ</button></nav>
+:root{--bg:#f1f2ee;--card:#fcfcfa;--ink:#1d2a26;--mut:#667269;--line:#d8ddd5;--pri:#0e6b5c;--sun:#f0b429;--pink:#d4553a;--soft:#e4ebe6;--sh:#0a4d42}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111815;--card:#192320;--ink:#ecefe9;--mut:#9aa89f;--line:#2b3a33;--soft:#22302a;--pri:#3fb59d;--priInk:#06140f}}
+:root[data-theme="dark"]{--bg:#111815;--card:#192320;--ink:#ecefe9;--mut:#9aa89f;--line:#2b3a33;--soft:#22302a;--pri:#3fb59d;--priInk:#06140f}
+.logo{font:800 30px/1 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em;color:var(--ink);position:relative;padding-bottom:10px}
+.logo .ez{color:var(--pri)}.logo .wk{font-weight:300}.logo svg{position:absolute;left:0;bottom:0;width:100%;height:9px;color:var(--sun)}
+.btn,.btn.sun,.btn.pink,.btn.out{box-shadow:none;border-radius:10px}.btn:active{transform:none;box-shadow:none}.btn:hover{filter:brightness(.93)}
+nav button,.chip,.tag{border-radius:8px}nav button:hover,.btn:hover,.card:hover,.ct:hover,.bn:hover{transform:none}
+.card,.panel,.step{border-radius:12px;border-width:1px}.card:hover{box-shadow:none;border-color:var(--ink)}.md{border-radius:16px}.thumb{height:140px}
+.hero2{text-align:left;border-radius:14px;padding:44px 34px;background-color:var(--card)}.hero2 h1{margin:6px 0;max-width:15em;letter-spacing:-.01em}.hero2 .ty{margin:8px 0 22px}
+.sbox{margin:0}.sbox>input{border-radius:12px;padding-left:20px;box-shadow:none}.sbox>span{display:none}.step i:empty{display:none}.bub{box-shadow:0 2px 10px #0004}
+.cur{mix-blend-mode:difference}.cur i{background:#fff;box-shadow:none;border-radius:0}
+.cur i:first-child{left:-9px;top:-.5px;width:18px;height:1px}.cur i:last-child{left:-.5px;top:-9px;width:1px;height:18px}.cur.hov b,.cur.dn b{transform:none}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}.plan{margin:0}.plan.hot{border:2px solid var(--sun)}.plan ul{padding-left:18px;color:var(--mut);min-height:90px}
+</style>
+</head>
+<body>
+<div class="top"><div class="bar"><div class="logo" onclick="go('home')" aria-label="EZWORK"><span class="ez">EZ</span><span class="wk">work</span><svg viewBox="0 0 120 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 8c18-7 36-7 54-2s40 3 60-3" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><nav id="nav"></nav><div class="row" id="me"></div></div></div>
+<main id="app"></main>
+<div class="fab" id="fab"></div>
 <script>
-// ⚠️ ข้อมูลสถานที่ทั้งหมดเป็น "ข้อมูลตัวอย่าง" พิกัด/ราคา/เวลาเปิดปิดเป็นค่าประมาณ ต้องตรวจสอบกับของจริงก่อนใช้งาน
-// [ชื่อ,ประเภท(S ที่เที่ยว C คาเฟ่ F อาหาร H ที่พัก A กิจกรรม),lat,lng,ราคา,เปิด,ปิด,นาที,แท็ก,flags(e ผู้สูงอายุ k เด็ก w เดินน้อย l ชุมชน),อิโมจิ,วันปิด(0=อา..)]
-const R=[["ย่านเมืองเก่าริมน้ำจันทบูร","S",12.6029,102.1105,0,8,21,90,"hi,ph,ch","ekwl","🏘️"],["อาสนวิหารพระนางมารีอาฯ","S",12.6068,102.1147,0,7,18,45,"hi,ph","ekw","⛪"],["ย่านตลาดพลอยกะไชย","S",12.604,102.113,0,8,17,60,"hi,fo","ekwl","💎"],["น้ำตกพลิ้ว (ตัวอย่าง)","S",12.503,102.172,40,8,17,120,"na,fa,ph","k","🌊"],["อุทยานเขาคิชฌกูฏ (ตัวอย่าง)","S",12.7992,102.1583,40,8,16,150,"na,ph","k","⛰️"],["หาดแหลมสิงห์","S",12.4651,101.943,0,6,19,90,"na,ch,ph,fa","ekw","🏖️"],["ศูนย์ศึกษาอ่าวคุ้งกระเบน","S",12.565,102.03,10,8,17,120,"na,ph,ch","ekwl","🌿"],["วัดโยธานิมิตร (ตัวอย่าง)","S",12.615,102.114,0,6,18,30,"hi","ekw","🛕"],["ชุมชนบ้านริมน้ำย่านญวนเก่า","S",12.6036,102.1114,0,8,18,50,"hi,ph,l","ekwl","🏠"],["ค่ายตากสิน (ตัวอย่าง)","S",12.6105,102.116,0,8,17,40,"hi","ekw","🏯"],["จุดชมวิวอ่าวยามเย็น","S",12.52,102.04,0,15,19,50,"na,ph,ch","ekw","🌅"],["คาเฟ่ริมน้ำเมืองเก่า","C",12.6015,102.1085,120,9,19,60,"ca,ph,ch","ekwl","☕"],["คาเฟ่สวนมังคุด","C",12.618,102.145,140,9,18,70,"ca,na,ph,ch","ekwl","🌳"],["ไอศกรีมโฮมเมดชานเมือง","C",12.612,102.11,90,10,20,45,"ca,fa","ekw","🍦"],["คาเฟ่วิวอ่าว","C",12.51,102.02,160,9,18,60,"ca,ph,ch,na","ek","🍹"],["คาเฟ่บ้านไม้เก่า","C",12.605,102.112,80,8,17,50,"ca,hi,ph","ekwl","🏡"],["โรงกาแฟคั่วสด","C",12.61,102.118,100,8,18,40,"ca","ekw","🫘",1],["ข้าวหมูกรอบเมืองจันท์","F",12.606,102.113,80,7,15,45,"fo","ekwl","🍜"],["ผัดหมี่จันท์ร้านเก่า","F",12.604,102.1135,70,9,18,40,"fo,hi","ekwl","🍝"],["ร้านอาหารทะเลริมน้ำ","F",12.59,102.06,350,11,21,75,"fo,ch","ekw","🦐"],["ครัวชุมชนประมง","F",12.57,102.033,280,10,20,70,"fo,na","ekwl","🦀"],["ครัวสวนผลไม้","F",12.638,102.165,160,10,18,60,"fo,na,fa","ekwl","🥘"],["ครัวบ้านสวน","F",12.613,102.125,120,10,20,50,"fo,fa","ekw","🍛"],["หมูกระทะเมืองใหม่","F",12.62,102.105,220,16,23,80,"fo,fa","ek","🍲"],["ข้าวสวยบ้านแหลมสิงห์","F",12.469,101.946,140,10,20,60,"fo,na","ekwl","🍚"],["ตลาดเย็นริมน้ำ","F",12.602,102.11,120,16.5,22,80,"fo,hi,ph,l","ekwl","🍢"],["ก๋วยเตี๋ยวเรือหน้าวัด","F",12.614,102.1135,60,8,20,35,"fo","ekwl","🥣"],["โฮสเทลย่านเมืองเก่า","H",12.6025,102.1095,450,0,24,0,"hi,ch","ekw","🛏️"],["เกสต์เฮาส์บ้านไม้ริมน้ำ","H",12.6033,102.11,700,0,24,0,"hi,ch,l","ekwl","🏡"],["โรงแรมใจกลางเมือง","H",12.613,102.105,1100,0,24,0,"fa","ekw","🏨"],["รีสอร์ตสวนผลไม้","H",12.635,102.16,1500,0,24,0,"na,ch,fa","ekwl","🌴"],["โรงแรมสี่ดาวเมืองจันท์","H",12.61,102.099,2200,0,24,0,"ch,fa","ekw","🏩"],["รีสอร์ตริมทะเลแหลมสิงห์","H",12.47,101.95,2800,0,24,0,"ch,na,fa","ekw","🌊"],["ล่องเรือชมป่าชายเลน","A",12.567,102.027,350,8,15,90,"na,ph,fa","ekl","🛶"],["เวิร์กชอปทอเสื่อจันทบูร","A",12.61,102.125,250,9,16,90,"hi,fa,l","ekwl","🧵"],["สวนผลไม้ชุมชน เก็บ-ชิม","A",12.64,102.17,150,8,16,90,"fa,fo,na,l","ekwl","🍍"],["เวิร์กชอปเจียระไนพลอย","A",12.604,102.1128,400,10,17,75,"hi,l","ekwl","💍",1],["ปั่นจักรยานรอบเมืองเก่า","A",12.603,102.111,150,8,17,90,"ch,hi,ph","kl","🚲"],["นวดแผนไทยชุมชน","A",12.614,102.113,400,10,20,90,"ch","ekwl","💆"],["ดูหิ่งห้อยยามค่ำ","A",12.576,102.035,300,18,21,90,"na,ph,ch","ek","✨"]];
-const P0=R.map((a,i)=>({i,n:a[0],t:a[1],la:a[2],lo:a[3],p:a[4],o:a[5],c:a[6],d:a[7],g:a[8].split(','),f:a[9],em:a[10],x:a[11]??-1}));
-let CEN={la:12.6,lo:102.1},CUR='จันทบุรี',P=P0;
-const SN={ca:'คาเฟ่',na:'ธรรมชาติ',fo:'อาหารถิ่น',hi:'วัฒนธรรม',ph:'ถ่ายรูป',ch:'ชิลๆ',fa:'ครอบครัว'},RT={car:6,moto:2.5,taxi:14},TN=['ประหยัด','พอดี','สบาย'],MD={car:'🚗 รถยนต์',moto:'🛵 มอเตอร์ไซค์',taxi:'🚕 แท็กซี่/รถเช่าพร้อมคนขับ'};
-/* ===== 77 จังหวัด (พิกัดกลางจังหวัดโดยประมาณ) · DATA = จังหวัดที่มีฐานข้อมูลสถานที่ ===== */
-const PV='กรุงเทพมหานคร,13.75,100.5;กระบี่,8.09,98.91;กาญจนบุรี,14.02,99.53;กาฬสินธุ์,16.43,103.51;กำแพงเพชร,16.48,99.52;ขอนแก่น,16.44,102.83;จันทบุรี,12.61,102.1;ฉะเชิงเทรา,13.69,101.07;ชลบุรี,13.36,100.98;ชัยนาท,15.19,100.13;ชัยภูมิ,15.81,102.03;ชุมพร,10.49,99.18;เชียงราย,19.91,99.83;เชียงใหม่,18.79,98.98;ตรัง,7.56,99.61;ตราด,12.24,102.52;ตาก,16.88,99.13;นครนายก,14.21,101.21;นครปฐม,13.82,100.06;นครพนม,17.41,104.78;นครราชสีมา,14.98,102.1;นครศรีธรรมราช,8.43,99.96;นครสวรรค์,15.7,100.14;นนทบุรี,13.86,100.52;นราธิวาส,6.43,101.82;น่าน,18.78,100.78;บึงกาฬ,18.36,103.65;บุรีรัมย์,14.99,103.1;ปทุมธานี,14.02,100.53;ประจวบคีรีขันธ์,11.81,99.8;ปราจีนบุรี,14.05,101.37;ปัตตานี,6.87,101.25;พระนครศรีอยุธยา,14.35,100.57;พะเยา,19.17,99.9;พังงา,8.45,98.53;พัทลุง,7.62,100.08;พิจิตร,16.44,100.35;พิษณุโลก,16.82,100.26;เพชรบุรี,13.11,99.94;เพชรบูรณ์,16.42,101.16;แพร่,18.14,100.14;ภูเก็ต,7.89,98.4;มหาสารคาม,16.18,103.3;มุกดาหาร,16.54,104.72;แม่ฮ่องสอน,19.3,97.97;ยโสธร,15.79,104.14;ยะลา,6.54,101.28;ร้อยเอ็ด,16.05,103.65;ระนอง,9.96,98.64;ระยอง,12.68,101.28;ราชบุรี,13.53,99.81;ลพบุรี,14.8,100.65;ลำปาง,18.29,99.49;ลำพูน,18.57,99.01;เลย,17.49,101.72;ศรีสะเกษ,15.12,104.32;สกลนคร,17.16,104.15;สงขลา,7.19,100.6;สตูล,6.62,100.07;สมุทรปราการ,13.6,100.6;สมุทรสงคราม,13.41,100;สมุทรสาคร,13.55,100.27;สระแก้ว,13.82,102.07;สระบุรี,14.53,100.91;สิงห์บุรี,14.89,100.4;สุโขทัย,17.01,99.82;สุพรรณบุรี,14.47,100.12;สุราษฎร์ธานี,9.14,99.33;สุรินทร์,14.88,103.49;หนองคาย,17.88,102.74;หนองบัวลำภู,17.2,102.44;อ่างทอง,14.59,100.45;อำนาจเจริญ,15.86,104.63;อุดรธานี,17.41,102.79;อุตรดิตถ์,17.62,100.1;อุทัยธานี,15.38,100.02;อุบลราชธานี,15.24,104.85'.split(';').map(x=>{const a=x.split(',');return{n:a[0],la:+a[1],lo:+a[2]}});
-const pchips=q=>PV.filter(p=>p.n.includes(q)).map(p=>`<button class="chip ${W.prov==p.n?'on':''}" onclick="A.pv('${p.n}')">${p.n=='จันทบุรี'?'✅ ':''}${p.n}</button>`).join('')||'<span class=m>ไม่พบจังหวัดนี้</span>';
-const pnote=()=>W.prov=='จันทบุรี'?'<p class=m>✅ จันทบุรี: ข้อมูลตัวอย่างชุดหลัก (ชื่อสถานที่ละเอียด)</p>':`<div class=warn>ℹ️ ${W.prov}: ใช้ “ชุดจำลอง” — พิกัดกลางจังหวัดจริง แต่ชื่อสถานที่เป็นชื่อทั่วไปและราคา/เวลาเป็นค่าประมาณ ทุกจุดมีปุ่มค้นหาสถานที่จริงใน Google Maps</div>`;
-const mwarn=()=>{const ns=[2,2,4][W.pace]*W.days;return W.must.length>ns?`<div class=warn style="margin-top:8px">เลือกไว้มากกว่าที่จังหวะ/จำนวนวันรองรับ (~${ns} จุด) วันอาจแน่น ลองเพิ่มจำนวนวันหรือเลือกจังหวะ “แน่น”</div>`:''};
-/* จังหวัดอื่นนอกจันทบุรี = ชุดจำลอง: ใช้โครงราคา/เวลา/แท็กเดียวกัน วางรอบพิกัดกลางจังหวัด ชื่อเป็นชื่อทั่วไป (ไม่ใช่สถานที่จริง) */
-const NM={S:['วัดเก่าแก่กลางเมือง','ตลาดโบราณริมน้ำ','สวนสาธารณะกลางเมือง','พิพิธภัณฑ์ท้องถิ่น','จุดชมวิวยามเย็น','อุทยาน/น้ำตกใกล้เมือง','ชุมชนเก่าริมน้ำ','ถนนคนเดินกลางเมือง'],C:['คาเฟ่ริมน้ำ','คาเฟ่สวนร่มรื่น','ร้านไอศกรีมโฮมเมด','คาเฟ่บ้านไม้เก่า','โรงคั่วกาแฟท้องถิ่น','คาเฟ่วิวเมือง'],F:['ร้านอาหารพื้นถิ่นเจ้าเก่า','ก๋วยเตี๋ยวหน้าวัด','ครัวชุมชน','ร้านอาหารริมน้ำ','ตลาดเย็นกลางเมือง','ครัวบ้านสวน','หมูกระทะเมืองใหม่','ร้านข้าวแกงเมนูท้องถิ่น'],H:['โฮสเทลกลางเมือง','เกสต์เฮาส์บ้านไม้','โรงแรมใจกลางเมือง','รีสอร์ตชานเมือง','โรงแรมสี่ดาว','รีสอร์ตพูลวิลล่า'],A:['เวิร์กชอปงานฝีมือชุมชน','สวนเกษตร เก็บ-ชิม','ปั่นจักรยานรอบเมือง','นวดแผนไทยชุมชน','ล่องเรือ/เดินป่าเบาๆ','คลาสทำอาหารท้องถิ่น','กิจกรรมยามค่ำ']};
-function setProv(n){if(n==CUR)return;CUR=n;if(n=='จันทบุรี'){P=P0;CEN={la:12.6,lo:102.1};return}const v=PV.find(x=>x.n==n),cn={};CEN={la:v.la,lo:v.lo};P=P0.map(q=>{const k=cn[q.t]=(cn[q.t]||0)+1,pl=NM[q.t],nm=pl[(k-1)%pl.length]+(k>pl.length?' 2':'');return{...q,n:nm+' · '+n,q:nm+' '+n,gen:1,la:v.la+(q.la-12.6),lo:v.lo+(q.lo-102.1)}})}
-const $=s=>document.querySelector(s),f=n=>Math.round(n).toLocaleString('en-US'),tm=m=>{m=Math.round(m);return String(m/60|0).padStart(2,'0')+':'+String(m%60).padStart(2,'0')};
-const toast=t=>{const e=$('#t');e.textContent=t;e.classList.add('on');clearTimeout(toast.i);toast.i=setTimeout(()=>e.classList.remove('on'),3500)};
-const modal=h=>{$('#m').innerHTML=h?`<div class=md><button class=x onclick="modal()" aria-label="ปิด">✕</button>${h}</div>`:'';$('#m').className=h?'on':''};
-const hv=(a,b,m=1.35)=>{const r=Math.PI/180,x=(b.la-a.la)*r,y=(b.lo-a.lo)*r,q=Math.sin(x/2)**2+Math.cos(a.la*r)*Math.cos(b.la*r)*Math.sin(y/2)**2;return 12742*Math.asin(Math.sqrt(q))*m};
-const nextSat=()=>{const d=new Date();d.setDate(d.getDate()+((6-d.getDay()+7)%7||7));return d.toISOString().slice(0,10)};
-let S={v:'home',w:{step:0,prov:'จันทบุรี',must:[],days:2,a:2,k:0,e:0,budget:4000,mode:'car',st:[],pace:1,low:false,date:nextSat()},cfg:null,plan:null,tier:1,seed:1,day:0,me:null,alts:null,ev:{visit:0,done:0,plan:0,click:0,paid:0},ad:{trips:1500,conv:8,com:6,pr:79}},W=S.w;
-try{Object.assign(S.ev,JSON.parse(localStorage.getItem('tf')||'{}'))}catch(e){}
-const track=k=>{S.ev[k]++;try{localStorage.setItem('tf',JSON.stringify(S.ev))}catch(e){}};
-const pax=c=>c.a+c.e+c.k*.5,rooms=c=>Math.max(1,Math.ceil((c.a+c.e+c.k*.5)/2)),wd=(c,i)=>(new Date(c.date+'T00:00:00').getDay()+i)%7;
-const near=()=>S.me&&hv(S.me,CEN,1)<80;
-/* ===== Planner Engine ===== */
-const ok=(p,c)=>(!c.e||p.f.includes('e'))&&(!c.k||p.f.includes('k'))&&(!c.low||!'SA'.includes(p.t)||p.f.includes('w'));
-const sc=(p,c,s)=>p.g.filter(g=>c.st.includes(g)).length*3+(p.f.includes('l')?1.5:0)+((p.i*9301+s*49297)%233)/233*1.5;
-function build(c,t,s){
- const H=P.filter(p=>p.t=='H'&&ok(p,c)).sort((a,b)=>a.p-b.p),hot=c.days>1&&H.length?H[[0,H.length>>1,H.length-1][t]]:null;
- const fc=[140,260,9e9][t],ac=[200,400,9e9][t],ns=[2,2,4][c.pace],used=new Set(),days=[];
- const mu=[...new Set(c.must||[])];let L=[],c0=CEN,l0=mu.map(i=>P[i]);while(l0.length){l0.sort((a,b)=>hv(c0,a)-hv(c0,b));c0=l0.shift();L.push(c0)}
- const MU=Array.from({length:c.days},(_,d)=>L.slice(Math.round(d*L.length/c.days),Math.round((d+1)*L.length/c.days)));mu.forEach(i=>used.add(i));
- for(let d=0;d<c.days;d++){
-  const w=wd(c,d),org=hot||CEN;
-  const pool=P.filter(p=>'SCA'.includes(p.t)&&ok(p,c)&&!used.has(p.i)&&p.x!=w&&(p.t!='A'||p.p<=ac)).map(p=>({p,s:sc(p,c,s)})).sort((a,b)=>b.s-a.s),sel=[...MU[d]];
-  {const sd=sel[0]||(pool[0]&&pool[0].p);if(sd){if(!sel.length)sel.push(sd);pool.filter(o=>o.p!=sd).map(o=>({p:o.p,s:o.s-hv(sd,o.p)*.35})).sort((a,b)=>b.s-a.s).slice(0,Math.max(0,ns-sel.length)).forEach(o=>sel.push(o.p))}}
-  sel.forEach(p=>used.add(p.i));
-  const ord=[];let cur=org,left=[...sel];
-  while(left.length){left.sort((a,b)=>hv(cur,a)-hv(cur,b));cur=left.shift();ord.push(cur)}
-  const meal=(lu,an)=>{let q=P.filter(p=>p.t=='F'&&ok(p,c)&&!used.has(p.i)&&p.x!=w&&(lu?p.o<=12&&p.c>=14:p.c>=20));const q2=q.filter(p=>p.p<=fc);if(q2.length)q=q2;
-   q=q.map(p=>({p,s:sc(p,c,s)-hv(an,p)*.4})).sort((a,b)=>b.s-a.s)[0];if(q)used.add(q.p.i);return q&&q.p};
-  const m=ord.length>>1,L=meal(1,ord[m-1]||org),seq=[...ord];if(L)seq.splice(m,0,L);
-  if(c.pace>0){const D=meal(0,seq[seq.length-1]||org);D&&seq.push(D)}
-  days.push(seq.map(p=>p.i))}
- return{days,hotel:hot?hot.i:null}}
-function calc(pl,c){
- const px=pax(c),hot=pl.hotel!=null?P[pl.hotel]:null,o={d:[],w:[],hot,c:{lod:0,food:0,act:0,tr:0}};let km=0;
- pl.days.forEach((ids,d)=>{
-  let t=540,pv=d==0&&near()?S.me:hot||P[ids[0]]||CEN,k0=0,m0=0;const rows=[];
-  ids.forEach(id=>{const p=P[id],k=hv(pv,p),tr=k/35*60;let ro='';t+=tr;
-   if(p.t=='F'){ro=t<840?'มื้อกลางวัน':'มื้อเย็น';t=Math.max(t,ro=='มื้อเย็น'?1080:690)}
-   t=Math.max(t,p.o*60);const en=t+p.d;
-   if(en>p.c*60+1)o.w.push(`วันที่ ${d+1}: “${p.n}” อาจเกินเวลาปิด ${tm(p.c*60)}`);
-   if(p.x==wd(c,d))o.w.push(`วันที่ ${d+1}: “${p.n}” ปิดในวันนี้`);
-   rows.push({p,ar:t,en,k,tr,ro});t=en;k0+=k;m0+=tr;pv=p;
-   if(p.t=='F'||p.t=='C')o.c.food+=p.p*px;else o.c.act+=p.p*px});
-  if(hot){const b=hv(pv,hot);k0+=b;m0+=b/35*60}
-  if(m0>240)o.w.push(`วันที่ ${d+1}: เดินทางรวม ${(m0/60).toFixed(1)} ชม. อาจเหนื่อยเกินไป`);
-  if(rows.filter(r=>r.p.t!='F').length<2)o.w.push(`วันที่ ${d+1}: สถานที่ที่เข้าเงื่อนไขมีไม่พอ ลองลดจำนวนวันหรือผ่อนข้อจำกัด (เช่น เดินน้อย)`);
-  o.d.push({rows,k:k0,m:m0});km+=k0});
- o.c.food+=60*px*pl.days.length;o.c.lod=hot?hot.p*rooms(c)*(c.days-1):0;
- o.c.tr=km*RT[c.mode]*(c.mode=='moto'?Math.ceil((c.a+c.e+c.k)/2):1);
- for(const k in o.c)o.c[k]=Math.round(o.c[k]);o.total=o.c.lod+o.c.food+o.c.act+o.c.tr;o.km=km;return o}
-const gen=(c,s)=>[0,1,2].map(t=>{const pl=build(c,t,s),r=calc(pl,c);return{t,pl,r,fit:r.total<=c.budget*.9}});
-function start(c,keep){setProv(c.prov||'จันทบุรี');S.cfg=c;S.alts=gen(c,S.seed);const fit=S.alts.filter(a=>a.fit);S.tier=keep!=null?keep:fit.length?fit[fit.length-1].t:0;S.plan=JSON.parse(JSON.stringify(S.alts[S.tier].pl));S.day=0;S.v='res';track('plan');render()}
-const why=(p,x,c)=>{const a=[],m=p.g.filter(g=>c.st.includes(g)).map(g=>SN[g]);if(m.length)a.push('ตรงสไตล์ '+m.join('+'));if(c.e&&p.f.includes('e'))a.push('เหมาะกับผู้สูงอายุ');if(c.k&&p.f.includes('k'))a.push('เด็กไปได้');if(c.low&&p.f.includes('w'))a.push('เดินน้อย');if(p.f.includes('l'))a.push('รายได้เข้าชุมชนท้องถิ่น');if(x.k<6&&x.k>0)a.push('ใกล้จุดก่อนหน้า');if(p.t=='F')a.push('อยู่ในกรอบงบอาหาร');if((c.must||[]).includes(p.i))a.unshift('คุณเลือกไว้เอง ⭐');return (a.slice(0,3).join(' · '))||'คัดมาให้สมดุลกับเส้นทางของวัน'};
-const gm=(la,lo)=>`https://www.google.com/maps/dir/?api=1&destination=${la},${lo}&travelmode=driving`;
-const gp=p=>p.gen?`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.q)}`:gm(p.la,p.lo);
-const gmDay=d=>{const ids=S.plan.days[d];if(!ids.length)return'#';const h=S.plan.hotel!=null?P[S.plan.hotel]:null,o=near()&&d==0?S.me:h||P[ids[0]],q=ids.map(i=>P[i]),de=h||q[q.length-1];return`https://www.google.com/maps/dir/?api=1&origin=${o.la},${o.lo}&destination=${de.la},${de.lo}&waypoints=${q.map(p=>p.la+','+p.lo).join('%7C')}&travelmode=${S.cfg.mode=='moto'?'two-wheeler':'driving'}`};
-/* ===== Views ===== */
-const SAMPLES=[['☕','คาเฟ่ & ถ่ายรูป','2 วัน · 2 คน · 4,500฿',{days:2,a:2,k:0,e:0,budget:4500,mode:'car',st:['ca','ph','ch'],pace:1,low:false}],['👨‍👩‍👧','ครอบครัวมีผู้สูงอายุ','3 วัน · 4 คน · 9,000฿',{days:3,a:2,k:1,e:1,budget:9000,mode:'car',st:['fa','fo','na'],pace:0,low:true}],['🎒','นักศึกษางบน้อย','2 วัน · 3 คน · 2,500฿',{days:2,a:3,k:0,e:0,budget:2500,mode:'moto',st:['fo','hi','ph'],pace:1,low:false}]];
-const V={
-home:()=>`<div class=hero><span class=pill>🌴 ครบ 77 จังหวัด · เมืองรองน่าเที่ยว</span><h1>วางแผนเที่ยวให้พอดีงบ ในไม่กี่วินาที</h1><p class=m>ใส่งบและสไตล์ → ได้ตารางเที่ยวรายวันที่คำนวณงบจริง จัดเส้นทางตามระยะทางจริง พาไปร้านและชุมชนท้องถิ่น พร้อมปุ่มจอง</p><button class="b g" onclick="A.go('wiz')">เริ่มวางแผน →</button> <button class="b s" style="color:#fff;border-color:#fff8" onclick="A.gps()">📍 ใช้ GPS จริง</button><div style="margin-top:12px"><span class=pill>🧮 คำนวณงบด้วยโค้ด</span><span class=pill>🗺️ ระยะทางจริง</span><span class=pill>🔖 จองต่อได้</span></div></div>
-<h2>ลองดูแผนตัวอย่าง</h2><div class=g3>${SAMPLES.map((s,i)=>`<button class=c style="text-align:left;color:inherit;cursor:pointer" onclick="A.sample(${i})"><div class=em>${s[0]}</div><b>${s[1]}</b><div class=m>${s[2]}</div><div class=ok style="margin-top:6px">ดูแผนทันที →</div></button>`).join('')}</div>
-<div class=c><h3>ทำไมต้อง TripFit</h3><p class=m style="margin:0">ท่องเที่ยวเมืองรองมีของดีมาก แต่หาข้อมูลยากและคุมงบยาก TripFit ช่วยให้ได้แผนที่ “ไปได้จริง จ่ายไหว” และส่งรายได้ไปยังร้านชุมชน • ข้อมูลสถานที่ในเดโมเป็นข้อมูลตัวอย่าง</p></div>`,
-wiz:()=>{const s=W.step,T=['ปลายทาง & วัน','ใครไปบ้าง','งบ & พาหนะ','สไตล์ & ข้อจำกัด'],sp=(k,mn,mx,l)=>`<div class=row style="margin:8px 0"><span>${l}</span><div class=sp><button onclick="A.st('${k}',-1,${mn},${mx})" aria-label="ลด">−</button><b>${W[k]}</b><button onclick="A.st('${k}',1,${mn},${mx})" aria-label="เพิ่ม">+</button></div></div>`;
- let b='';
- if(s==0)b=`<h3>ไปที่ไหน กี่วัน</h3><div class=chips><button class="chip on">📍 ${W.prov}</button></div><input type=search id=pq placeholder="🔍 ค้นหาจังหวัด (ครบ 77 จังหวัด)" oninput="A.pq()" style="width:100%;box-sizing:border-box;margin-top:10px"><div class=chips id=pl style="max-height:190px;overflow:auto;margin-top:8px">${pchips('')}</div><div id=pn style="margin-top:8px">${pnote()}</div>${sp('days',1,5,'จำนวนวัน')}<div class=row style="margin-top:8px"><span>วันเริ่มเดินทาง (ใช้เช็กวันที่ร้านปิด)</span><input type=date value="${W.date}" onchange="W.date=this.value||W.date"></div>`;
- if(s==1)b=`<h3>ใครไปบ้าง</h3>${sp('a',1,10,'ผู้ใหญ่')}${sp('k',0,6,'เด็ก')}${sp('e',0,6,'ผู้สูงอายุ')}<p class=m>ระบบจะเลือกเฉพาะสถานที่ที่เหมาะกับทุกคน ${W.e?'(มีผู้สูงอายุ → เลี่ยงที่เดินเยอะ)':''}</p>`;
- if(s==2){const px=W.a+W.e+W.k*.5,est=Math.round(px*W.days*350+(W.days-1)*Math.ceil(px/2)*450);b=`<h3>งบรวมของทริป</h3><div class=k id=bv>${f(W.budget)} ฿</div><input type=range min=1000 max=30000 step=500 value=${W.budget} oninput="W.budget=+this.value;$('#bv').textContent=f(this.value)+' ฿';$('#es').className=this.value<${est}?'warn':'m'" aria-label="งบ"><div id=es class="${W.budget<est?'warn':'m'}">งบต่ำสุดที่แนะนำสำหรับทริปนี้ ≈ ${f(est)} ฿ (ระบบกันงบสำรอง 10%)</div><h3 style="margin-top:12px">เดินทางด้วย</h3><div class=chips>${Object.keys(MD).map(k=>`<button class="chip ${W.mode==k?'on':''}" onclick="W.mode='${k}';render(1)">${MD[k]}</button>`).join('')}</div>`}
- if(s==3)b=`<h3>สไตล์ที่ชอบ (เลือกได้หลายอย่าง)</h3><div class=chips>${Object.keys(SN).map(k=>`<button class="chip ${W.st.includes(k)?'on':''}" onclick="A.tg('${k}')">${SN[k]}</button>`).join('')}</div><h3 style="margin-top:12px">สถานที่ที่อยากไปแน่ๆ <span class=m>(เลือกได้หลายจุด · เลือกแล้ว <b id=mc>${W.must.length}</b>)</span></h3><p class=m style="margin:0 0 6px">ไม่บังคับ — จุดที่เลือกจะถูกจัดเข้าแผนก่อน ที่เหลือระบบเติมให้ตามสไตล์ด้านบน</p><div style="max-height:260px;overflow:auto;border:1px solid var(--ln);border-radius:12px;padding:10px">${[['S','🏞️ ที่เที่ยว'],['C','☕ คาเฟ่'],['F','🍜 ร้านอาหาร'],['A','🎟️ กิจกรรม']].map(([t,l])=>`<div class=m style="margin:6px 0 4px">${l}</div><div class=chips>${P.filter(p=>p.t==t).map(p=>`<button class="chip ${W.must.includes(p.i)?'on':''}" style="min-height:40px" onclick="A.mu(${p.i},this)">${p.em} ${p.n}</button>`).join('')}</div>`).join('')}</div><div id=mw>${mwarn()}</div><h3 style="margin-top:12px">จังหวะทริป</h3><div class=chips>${['ชิล 3 จุด/วัน','สมดุล 4 จุด/วัน','แน่น 6 จุด/วัน'].map((x,i)=>`<button class="chip ${W.pace==i?'on':''}" onclick="W.pace=${i};render(1)">${x}</button>`).join('')}</div><h3 style="margin-top:12px">ข้อจำกัด</h3><button class="chip ${W.low?'on':''}" onclick="W.low=!W.low;render(1)">🚶 เดินน้อย</button><div id=nst></div>`;
- return`<div class=c><div class=row><b>ขั้น ${s+1}/4 · ${T[s]}</b><span class=m>${Math.round((s+1)*25)}%</span></div><div class=pg><i style="width:${(s+1)*25}%"></i></div></div><div class=c>${b}</div><div class=row><button class="b s" onclick="A.nx(-1)" ${s?'':'disabled style="opacity:.4"'}>← ย้อนกลับ</button><button class=b onclick="A.nx(1)">${s==3?'✨ สร้างแผน':'ถัดไป →'}</button></div>`},
-res:()=>{const c=S.cfg,r=calc(S.plan,c),B=c.budget,over=r.total>B,q={lod:.35,food:.25,act:.12,tr:.18},L={lod:'🏨 ที่พัก',food:'🍜 อาหาร',act:'🎟️ กิจกรรม',tr:'🚗 เดินทาง'},bad=!S.alts.some(a=>a.fit);
- return`<div class=row><div><h2 style="margin:0">ทริป${c.prov||'จันทบุรี'} ${c.days} วัน · ${c.a+c.e+c.k} คน</h2><div class=m>แผน “${TN[S.tier]}” · ${MD[c.mode]} · ${S.cfg.st.map(k=>SN[k]).join(', ')}</div></div></div>
-<div class="c" style="margin-top:10px"><div class=row><b>ใช้ไป <span class="${over?'no':'ok'}">${f(r.total)}</span> / งบ ${f(B)} ฿</b><span class=m>สำรอง ${f(B-r.total)} ฿</span></div><div class="pg ${over?'r':''}" style="margin:8px 0"><i style="width:${Math.min(100,r.total/B*100)}%"></i></div>
-${Object.keys(L).map(k=>`<div class=row style="font-size:14px"><span>${L[k]}</span><span>${f(r.c[k])} / ${f(B*q[k])} ฿</span></div><div class="pg ${r.c[k]>B*q[k]?'r':''}" style="height:5px;margin-bottom:5px"><i style="width:${Math.min(100,r.c[k]/(B*q[k])*100)}%"></i></div>`).join('')}<div class=m>ระยะทางรวม ≈ ${r.km.toFixed(0)} กม. (ระยะทางตรง × 1.35 ตัวคูณถนน)</div></div>
-${over?`<div class="warn bad">เกินงบ ${f(r.total-B)} ฿ — <button class="b sm" onclick="A.fit()">ปรับให้ประหยัดอัตโนมัติ</button></div>`:''}${bad?`<div class=warn>งบนี้น้อยไปสำหรับเงื่อนไขที่เลือก แนะนำอย่างน้อย ≈ ${f(Math.ceil(S.alts[0].r.total/.9/500)*500)} ฿ <button class="b sm g" onclick="A.setB(${Math.ceil(S.alts[0].r.total/.9/500)*500})">ปรับงบให้</button></div>`:''}${r.w.map(w=>`<div class=warn>⚠️ ${w}</div>`).join('')}
-${(S.cfg.prov||'จันทบุรี')!='จันทบุรี'?'<div class=warn>ℹ️ จังหวัดนี้ใช้ชุดสถานที่จำลอง (ชื่อทั่วไป พิกัดโดยประมาณ) — กด “📍 นำทาง” เพื่อค้นหาสถานที่จริงใกล้เคียงใน Google Maps</div>':''}<div class=c id=gps>${gpsBox()}</div>
-<div class=c><div class=row><div><span class=em>${r.hot?r.hot.em:'🧳'}</span> <b>${r.hot?r.hot.n:'ทริปไปเช้า-เย็นกลับ (ไม่ค้างคืน)'}</b>${r.hot?`<div class=m>${f(r.hot.p)}฿ × ${rooms(c)} ห้อง × ${c.days-1} คืน = ${f(r.c.lod)}฿</div>`:''}</div>${r.hot?`<div><button class="b sm g" onclick="A.book(${r.hot.i})">🔖 จองที่พัก</button> <button class="b sm s" onclick="A.swap(-1,0)">↔</button></div>`:''}</div></div>
-<div class=tabs>${S.plan.days.map((x,i)=>`<button class="chip ${S.day==i?'on':''}" onclick="S.day=${i};render(1)">วันที่ ${i+1}</button>`).join('')}</div>
-<div class=c><div id=map>${mapSvg(S.day)}</div><div class=row style="margin-top:8px"><span class=m>วันที่ ${S.day+1}: ${r.d[S.day].k.toFixed(0)} กม. · เดินทาง ${(r.d[S.day].m/60).toFixed(1)} ชม.</span><a class="b sm" target=_blank rel=noopener href="${gmDay(S.day)}">🧭 เปิดเส้นทางทั้งวัน</a></div></div>
-${r.d[S.day].rows.map((x,i)=>{const p=x.p;return`<div class="c st"><div class=tt>${tm(x.ar)}<small>–${tm(x.en)}</small></div><div class=bd><div><span class=em>${p.em}</span> <b>${p.n}</b> ${x.ro?`<span class=m>· ${x.ro}</span>`:''}</div><div class=m>${i==0&&!(S.day==0&&near())?'เริ่มจากที่พัก':''} ${x.k.toFixed(1)} กม. · ${Math.round(x.tr)} นาที จาก${i==0?(S.day==0&&near()?'ตำแหน่งคุณ':'จุดเริ่ม'):'จุดก่อน'} · ${p.p?f(p.p)+'฿/คน':'ฟรี'}</div><div style="font-size:14px;margin:4px 0">💡 ${why(p,x,c)}</div><div class=chips><a class="b sm s" target=_blank rel=noopener href="${gp(p)}">📍 นำทาง</a><button class="b sm g" onclick="A.book(${p.i})">🔖 จอง</button><button class="b sm s" onclick="A.swap(${S.day},${i})">↔ เปลี่ยน</button><button class="b sm s" onclick="A.del(${S.day},${i})" aria-label="ลบ">🗑</button></div></div></div>`}).join('')||'<div class=warn>วันนี้ยังไม่มีจุด กด “เพิ่มจุด” ได้เลย</div>'}
-<div class=row style="margin-bottom:12px"><button class="b s" onclick="A.add(${S.day})">＋ เพิ่มจุด</button><button class="b s" onclick="A.regen()">🔄 สร้างใหม่</button><button class="b s" onclick="A.go('cmp')">⚖️ เปรียบเทียบ 3 ระดับ</button><button class=b onclick="A.share()">📤 แชร์ทริป</button></div><p class=m>* ข้อมูลสถานที่เป็นข้อมูลตัวอย่าง ราคาเป็นค่าประมาณ ปุ่มจองเป็นตัวอย่างสำหรับ Demo</p>`},
-cmp:()=>{if(!S.alts)return V.home();return`<h2>เปรียบเทียบ 3 ระดับ</h2><div class=g3>${S.alts.map(a=>{const r=a.r;return`<div class=c style="${a.t==S.tier?'border:2px solid var(--ac)':''}"><div class=row><b>${['💸','👌','🛋️'][a.t]} ${TN[a.t]}</b><span class="${a.fit?'ok':'no'}">${a.fit?'✓ อยู่ในงบ':'เกินงบ'}</span></div><div class=k>${f(r.total)} ฿</div><div class=m>${r.hot?r.hot.n:'ไม่ค้างคืน'}<br>ที่พัก ${f(r.c.lod)} · อาหาร ${f(r.c.food)}<br>กิจกรรม ${f(r.c.act)} · เดินทาง ${f(r.c.tr)}<br>เหลือสำรอง ${f(S.cfg.budget-r.total)} ฿</div><button class="b sm" style="margin-top:8px" onclick="start(S.cfg,${a.t})">เลือกแผนนี้</button></div>`}).join('')}</div><button class="b s" onclick="A.go('res')">← กลับไปแผน</button>`},
-prem:()=>`<div class=hero><h1>TripFit Premium ⭐</h1><p class=m>ทริปไม่จำกัด แผนสำรองฝนตก ส่งออก PDF ไม่มีโฆษณา</p></div><div class=c><table><tr><th></th><th>Free</th><th class=ok>Premium</th></tr>${[['แผนต่อเดือน','3 แผน','ไม่จำกัด'],['เปรียบเทียบ 3 ระดับ','✓','✓'],['แผนสำรองวันฝนตก','—','✓'],['ส่งออกเป็น PDF / แชร์ LINE','—','✓'],['ติดตามงบระหว่างทริป','—','✓'],['ส่วนลดจากพาร์ทเนอร์ท้องถิ่น','—','✓']].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</table></div><div class=g3><div class=c><b>รายเดือน</b><div class=k>79 ฿/เดือน</div><button class=b onclick="A.pay('รายเดือน 79 ฿')">สมัคร (จำลอง)</button></div><div class=c><b>รายทริป</b><div class=k>39 ฿/ทริป</div><button class="b g" onclick="A.pay('รายทริป 39 ฿')">ซื้อ (จำลอง)</button></div></div><p class=m>* หน้าจำลอง ไม่มีการตัดเงินจริง</p>`,
-adm:()=>`<h2>📊 Dashboard รายได้ (ผู้ดูแล)</h2><div class="warn">ตัวเลขทั้งหมดเป็น “ประมาณการจากสมมติฐาน” ไม่ใช่รายได้จริง</div><div class=c>${[['trips','ทริปต่อเดือน',100,20000,100,''],['conv','Conversion คลิกจอง',1,30,1,'%'],['com','ค่าคอมมิชชัน',2,15,1,'%'],['pr','ราคา Premium',59,99,1,' ฿']].map(s=>`<div class=row style="font-size:14px"><span>${s[1]}</span><b id=l_${s[0]}>${f(S.ad[s[0]])}${s[5]}</b></div><input type=range min=${s[2]} max=${s[3]} step=${s[4]} value=${S.ad[s[0]]} oninput="S.ad.${s[0]}=+this.value;$('#l_${s[0]}').textContent=f(this.value)+'${s[5]}';A.ad()" aria-label="${s[1]}">`).join('')}</div><div id=ad>${admBody()}</div>`,
-abt:()=>`<h2>เกี่ยวกับโครงการ</h2><div class=c><h3>ปัญหา</h3><p class=m style="margin:0">นักท่องเที่ยวเมืองรองหาข้อมูลกระจัดกระจาย คุมงบไม่ถูก ร้านและชุมชนท้องถิ่นไม่ถูกค้นพบ ทำให้รายได้กระจุกอยู่ที่ไม่กี่จุด</p></div><div class=c><h3>กลุ่มเป้าหมาย</h3><p class=m style="margin:0">สายคาเฟ่ 20-35 ปี · ครอบครัวมีผู้สูงอายุ · นักศึกษางบน้อย</p></div><div class=c><h3>ต่างจาก ChatGPT ตรงไหน</h3><p style="margin:0">✅ คำนวณงบด้วยโค้ด ตัวเลขไม่เพี้ยน<br>✅ ใช้ฐานข้อมูลสถานที่ ไม่ให้ AI แต่งเอง (นอกจันทบุรีเป็นชุดจำลองรอข้อมูลจริง)<br>✅ จัดเส้นทางตามระยะทางจริง (Haversine + nearest neighbor)<br>✅ ใช้ GPS จริงของผู้ใช้ และจองต่อได้ทันที</p></div><div class=c><h3>ผลกระทบต่อท้องถิ่น</h3><p class=m style="margin:0">ดันร้านและกิจกรรมชุมชนขึ้นมาในแผน (ป้าย “ชุมชน”) กระจายคนไปเมืองรอง ลดความแออัดจุดดัง</p></div><div class=c><h3>แผนต่อยอด</h3><p class=m style="margin:0">ขยายจังหวัดอื่น · LINE OA · สมัครพาร์ทเนอร์ท้องถิ่น · ขาย Insight พฤติกรรมนักท่องเที่ยวให้ธุรกิจ</p></div>`};
-function fin(t,a=S.ad){const rt=a.conv/100*.4*1800*a.com/100,pr=.03*a.pr,pa=500/60,F=3500,v=.3,rev=n=>n*(rt+pr+pa),pf=n=>rev(n)-n*v-F;return{aff:t*rt,pre:t*pr,par:t*pa,cost:t*v+F,pf:pf(t),be:F/(rt+pr+pa-v),fn:pf,rev}}
-function admBody(){const a=S.ad,t=a.trips,x=fin(t),v=t/.95/.45,fun=[['เข้าเว็บ',v],['กรอกครบ',t/.95],['ได้แผน',t],['คลิกจอง',t*a.conv/100],['จ่ายจริง',t*a.conv/100*.4+t*.03]];
-
- return`<div class=sc><div>กำไรต่อเดือน (ประมาณการ)</div><div class=k>${f(x.pf)} ฿</div><div style="font-size:14px">จุดคุ้มทุน ≈ ${f(x.be)} ทริป/เดือน</div></div><div class=g3 style="margin-top:10px">${[['🔗 Affiliate',x.aff],['⭐ Premium',x.pre],['🏪 พาร์ทเนอร์ท้องถิ่น (≈'+Math.round(t/60)+' ร้าน×500฿)',x.par],['🤖 ต้นทุน AI/ระบบ (0.30฿/แผน + คงที่ 3,500฿)',-x.cost]].map(r=>`<div class=c><div class=m>${r[0]}</div><b class=k style="font-size:20px">${f(r[1])} ฿</b></div>`).join('')}</div><div class=c><b>Funnel</b>${fun.map((r,i)=>`<div class=row style="font-size:14px;margin-top:6px"><span>${r[0]}</span><span>${f(r[1])}</span></div><div class=pg style="height:6px"><i style="width:${Math.max(2,r[1]/fun[0][1]*100)}%"></i></div>`).join('')}</div>${profitChart(x,t)}<div class=c><b>การใช้งานจริงในอุปกรณ์นี้ (Demo)</b><div class=m>เข้าเว็บ ${S.ev.visit} · กรอกครบ ${S.ev.done} · ได้แผน ${S.ev.plan} · คลิกจอง ${S.ev.click} · จ่าย(จำลอง) ${S.ev.paid}</div></div>`}
-function profitChart(x,t){const Wd=320,H=200,l=46,r=12,tp=24,b=28,mx=t*2,N=40,pts=Array.from({length:N+1},(_,i)=>{const n=mx*i/N;return[n,x.fn(n)]}),ys=pts.map(q=>q[1]),lo0=Math.min(...ys,0),hi0=Math.max(...ys,1),pd=(hi0-lo0)*.1,lo=lo0-pd,hi=hi0+pd,X=n=>l+n/mx*(Wd-l-r),Y=v=>tp+(hi-v)/(hi-lo)*(H-tp-b),y0=Y(0),
- k=v=>{const a=Math.abs(v);return(v<0?'-':'')+(a>=1e6?(a/1e6).toFixed(1)+'M':a>=1e4?Math.round(a/1e3)+'k':a>=1e3?(a/1e3).toFixed(1)+'k':Math.round(a))},
- ln=pts.map(q=>X(q[0]).toFixed(1)+','+Y(q[1]).toFixed(1)).join(' '),ar=`${X(0)},${y0} ${ln} ${X(mx)},${y0}`,cur=x.pf,bx=x.be<=mx?X(x.be):null,
- pill=(cx,cy,txt,col,tc)=>{const w=txt.length*5.4+16,px=Math.max(l,Math.min(Wd-r-w,cx-w/2));return`<rect x="${px}" y="${cy-10}" width="${w}" height="18" rx="9" fill="${col}"/><text x="${px+w/2}" y="${cy+3}" font-size="10" font-weight="700" text-anchor="middle" fill="${tc}">${txt}</text>`},
- cy=Y(cur),ly=cy-18>tp+8?cy-18:cy+22;
- return`<div class=c><b>กำไร vs จำนวนทริป</b><svg viewBox="0 0 ${Wd} ${H}" width=100% role=img aria-label="กราฟกำไรเทียบจำนวนทริป"><defs><linearGradient id=gG gradientUnits=userSpaceOnUse x1=0 x2=0 y1=${tp} y2=${y0}><stop offset=0 stop-color="var(--ac)" stop-opacity=".5"/><stop offset=1 stop-color="var(--ac)" stop-opacity="0"/></linearGradient><linearGradient id=gR gradientUnits=userSpaceOnUse x1=0 x2=0 y1=${y0} y2=${H-b}><stop offset=0 stop-color="var(--co)" stop-opacity="0"/><stop offset=1 stop-color="var(--co)" stop-opacity=".45"/></linearGradient><clipPath id=cU><rect x=0 y=0 width=${Wd} height=${Math.max(0,y0)}/></clipPath><clipPath id=cD><rect x=0 y=${y0} width=${Wd} height=${Math.max(0,H-y0)}/></clipPath></defs>
-${[0,1,2,3].map(i=>{const v=lo+(hi-lo)*i/3;return`<line x1=${l} x2=${Wd-r} y1=${Y(v)} y2=${Y(v)} stroke="var(--ln)" stroke-width=".7"/><text x=${l-6} y=${Y(v)+3} font-size="9" text-anchor="end" fill="var(--mu)">${k(v)}</text>`}).join('')}
-<polygon points="${ar}" fill="url(#gG)" clip-path="url(#cU)"/><polygon points="${ar}" fill="url(#gR)" clip-path="url(#cD)"/>
-<line x1=${l} x2=${Wd-r} y1=${y0} y2=${y0} stroke="var(--mu)" stroke-width="1"/><text x=${l+4} y=${y0-4} font-size="9" fill="var(--ac)">กำไร</text><text x=${l+4} y=${y0+11} font-size="9" fill="var(--co)">ขาดทุน</text>
-${bx!=null?`<line x1=${bx} x2=${bx} y1=${tp} y2=${H-b} stroke="var(--go)" stroke-width="1.5" stroke-dasharray="4 3"/>${pill(bx,tp-12,'คุ้มทุน '+f(x.be),'var(--go)','#2a1d00')}`:''}
-<polyline points="${ln}" fill=none stroke="var(--ac)" stroke-width="3.5" stroke-linecap=round stroke-linejoin=round/>
-<line x1=${X(t)} x2=${X(t)} y1=${cy} y2=${H-b} stroke="var(--co)" stroke-width="1" stroke-dasharray="2 3"/><circle cx=${X(t)} cy=${cy} r="11" fill="var(--co)" opacity=".25"/><circle cx=${X(t)} cy=${cy} r="6" fill="var(--co)" stroke="#fff" stroke-width="2"/>${pill(X(t),ly,'ตอนนี้ '+k(cur)+' ฿','var(--co)','#fff')}
-<text x=${l} y=${H-9} font-size="10" fill="var(--mu)">0</text><text x=${X(mx/2)} y=${H-9} font-size="10" text-anchor="middle" fill="var(--mu)">${f(mx/2)}</text><text x=${Wd-r} y=${H-9} font-size="10" text-anchor="end" fill="var(--mu)">${f(mx)} ทริป</text></svg><div class=row style="font-size:13px"><span>🔴 ตอนนี้ ${f(t)} ทริป → ${cur<0?'ขาดทุน':'กำไร'} ${f(Math.abs(cur))} ฿</span><span style="color:var(--go)">┆ คุ้มทุน ${f(x.be)} ทริป</span></div></div>`}
-function gpsBox(){const m=S.me;if(!m)return`<div class=row><div><b>📍 ใช้ตำแหน่งจริงของคุณ</b><div class=m>ใช้ GPS ของเบราว์เซอร์ คำนวณระยะจากจุดที่คุณอยู่ (ไม่ส่งข้อมูลออกนอกเครื่อง)</div></div><button class=b onclick="A.gps()">เปิด GPS</button></div>`;const d=hv(m,CEN,1),n=A.nearest();return`<div class=row><div><b>📍 พบตำแหน่งแล้ว ±${Math.round(m.ac)} ม.</b><div class=m>${near()?'ใช้เป็นจุดเริ่มวันแรกของแผน':'คุณอยู่ห่างจันทบุรี ≈ '+f(d)+' กม. จึงไม่นำมาคิดเส้นทาง แต่ปุ่ม “นำทาง” ใช้ตำแหน่งจริงได้'}<br>ใกล้คุณที่สุด: ${n.em} ${n.n} (${hv(m,n).toFixed(1)} กม.)</div></div><button class="b s sm" onclick="A.near()">ใกล้ฉัน</button></div>`}
-function mapSvg(d){const ids=S.plan.days[d],h=S.plan.hotel!=null?P[S.plan.hotel]:null,pts=ids.map(i=>P[i]),all=[...pts,...(h?[h]:[])],me=near()?S.me:null;if(me)all.push(me);if(!all.length)return'<div class=m>ยังไม่มีจุดในวันนี้</div>';
- const Wv=320,Hv=240,T=256,mxp=(lo,z)=>(lo+180)/360*2**z*T,myp=(la,z)=>{const q=Math.sin(la*Math.PI/180);return(.5-Math.log((1+q)/(1-q))/(4*Math.PI))*2**z*T};
- let z=15;for(;z>8;z--){const xs=all.map(p=>mxp(p.lo,z)),ys=all.map(p=>myp(p.la,z));if(Math.max(...xs)-Math.min(...xs)<=Wv-80&&Math.max(...ys)-Math.min(...ys)<=Hv-80)break}
- const xs=all.map(p=>mxp(p.lo,z)),ys=all.map(p=>myp(p.la,z)),ox=(Math.min(...xs)+Math.max(...xs))/2-Wv/2,oy=(Math.min(...ys)+Math.max(...ys))/2-Hv/2,Q=p=>[mxp(p.lo,z)-ox,myp(p.la,z)-oy],n=2**z;let tiles='';
- for(let tx=Math.floor(ox/T);tx<=Math.floor((ox+Wv-1)/T);tx++)for(let ty=Math.floor(oy/T);ty<=Math.floor((oy+Hv-1)/T);ty++){if(ty<0||ty>=n||tx<0||tx>=n)continue;tiles+=`<img alt="" referrerpolicy="no-referrer" src="https://tile.openstreetmap.org/${z}/${tx}/${ty}.png" onerror="this.remove()" style="position:absolute;left:${((tx*T-ox)/Wv*100).toFixed(3)}%;top:${((ty*T-oy)/Hv*100).toFixed(3)}%;width:${(T/Wv*100+.15).toFixed(3)}%;height:${(T/Hv*100+.15).toFixed(3)}%">`}
- const line=[...(h?[h]:[]),...pts,...(h?[h]:[])].map(p=>Q(p).map(v=>v.toFixed(1)).join(',')).join(' ');
- const mk=pts.map((p,i)=>{const[x,y]=Q(p);return`<circle cx=${x} cy=${y} r="12" fill="var(--ac)" stroke="#fff" stroke-width="2.5"/><text x=${x} y=${y+4.5} text-anchor="middle" font-size="13" font-weight="700" fill="var(--at)">${i+1}</text>`}).join('');
- const hm=h?(([x,y])=>`<circle cx=${x} cy=${y} r="12" fill="#fff" stroke="var(--go)" stroke-width="2.5"/><text x=${x} y=${y+5} font-size="14" text-anchor="middle">🏨</text>`)(Q(h)):'';
- const mm=me?(([x,y])=>`<circle cx=${x} cy=${y} r="9" fill="#2f7cf6" stroke="#fff" stroke-width="3"><animate attributeName="r" values="8;12;8" dur="2s" repeatCount="indefinite"/></circle><text x=${x+12} y=${y-10} font-size="11" font-weight="700" fill="#1a56c4" stroke="#fff" stroke-width="3" paint-order="stroke">คุณ</text>`)(Q(me)):'';
- return`<div style="position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:14px;border:1px solid var(--ln);background:var(--bg) repeating-linear-gradient(0deg,transparent 0 59px,var(--ln) 59px 60px),repeating-linear-gradient(90deg,transparent 0 79px,var(--ln) 79px 80px)"><div class=m style="position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;text-align:center;padding:8px;font-size:11px">แผนที่พื้นหลังโหลดไม่ได้ (ต้องต่อเน็ต/ไม่ถูกบล็อกรูปภาพ) · ตำแหน่งและเส้นทางยังเป็นพิกัด GPS จริง</div>${tiles}<svg viewBox="0 0 ${Wv} ${Hv}" style="position:absolute;inset:0;width:100%;height:100%" role=img aria-label="แผนที่เส้นทาง"><polyline points="${line}" fill=none stroke="#fff" stroke-width="7" stroke-linejoin=round stroke-linecap=round opacity=".9"/><polyline points="${line}" fill=none stroke="var(--ac)" stroke-width="3.5" stroke-dasharray="8 5" stroke-linejoin=round />${hm}${mk}${mm}</svg><div style="position:absolute;right:3px;bottom:2px;font-size:9px;background:#fffd;color:#333;padding:0 4px;border-radius:4px">© OpenStreetMap contributors</div></div><div class=m style="font-size:12px;margin-top:4px">เส้นเชื่อมเป็นเส้นตรงตามลำดับจุด · กด “เปิดเส้นทางทั้งวัน” เพื่อดูเส้นทางถนนจริงใน Google Maps</div>`}
-/* ===== Actions ===== */
-const A={
-pv(n){W.prov=n;W.must=[];render(1)},
-pq(){$('#pl').innerHTML=pchips($('#pq').value.trim())},
-mu(i,e){const a=W.must,k=a.indexOf(i);k<0?a.push(i):a.splice(k,1);e.classList.toggle('on',k<0);$('#mc').textContent=a.length;$('#mw').innerHTML=mwarn()},
-go(v){if(v=='res'&&!S.plan){toast('ยังไม่มีแผน — มาตั้งค่าทริปกันก่อน');v='wiz'}if(v=='cmp'&&!S.alts)v='wiz';S.v=v;render()},
-th(){const r=document.documentElement;r.dataset.theme=(r.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'))=='dark'?'light':'dark'},
-sample(i){const c={...SAMPLES[i][3],date:nextSat(),must:[],prov:'จันทบุรี'};Object.assign(W,c,{step:0});track('done');start(c)},
-st(k,d,mn,mx){W[k]=Math.min(mx,Math.max(mn,W[k]+d));render(1)},
-tg(k){W.st=W.st.includes(k)?W.st.filter(x=>x!=k):[...W.st,k];render(1)},
-nx(d){if(d>0&&W.step==3){if(!W.st.length&&!W.must.length){$('#nst').innerHTML='<div class=warn style="margin-top:10px">ยังไม่ได้เลือกสไตล์ — อยากให้ระบบเลือกให้ไหม? <button class="b sm g" onclick="W.st=[\'na\',\'fo\'];render(1)">เลือกให้: ธรรมชาติ + อาหารถิ่น</button></div>';return}track('done');start({...W});return}W.step=Math.max(0,Math.min(3,W.step+d));render()},
-fit(){const t=Math.max(0,S.tier-1);if(S.tier==0)return toast('เป็นระดับประหยัดที่สุดแล้ว ลองเอาจุดออกหรือเพิ่มงบ');start(S.cfg,t)},
-setB(b){S.cfg.budget=b;W.budget=b;start(S.cfg)},
-regen(){S.seed++;start(S.cfg,S.tier)},
-del(d,i){S.plan.days[d].splice(i,1);render(1)},
-add(d){const u=new Set(S.plan.days.flat()),an=P[S.plan.days[d].slice(-1)[0]]||P[S.plan.hotel]||CEN,w=wd(S.cfg,d),l=P.filter(p=>p.t!='H'&&!u.has(p.i)&&ok(p,S.cfg)&&p.x!=w).sort((a,b)=>hv(an,a)-hv(an,b)).slice(0,6);modal(`<h3>เพิ่มจุดในวันที่ ${d+1}</h3>${l.map(p=>`<div class=row style="margin:8px 0"><div>${p.em} <b>${p.n}</b><div class=m>${hv(an,p).toFixed(1)} กม. · ${p.p?f(p.p)+'฿':'ฟรี'}</div></div><button class="b sm" onclick="A.ins(${d},${p.i})">เพิ่ม</button></div>`).join('')||'<p class=m>ไม่มีสถานที่ที่ตรงเงื่อนไขเหลือแล้ว</p>'}`)},
-ins(d,id){const a=S.plan.days[d],p=P[id];let b=a.length,bc=1e9;for(let i=0;i<=a.length;i++){const x=i?P[a[i-1]]:S.plan.hotel!=null?P[S.plan.hotel]:p,y=i<a.length?P[a[i]]:S.plan.hotel!=null?P[S.plan.hotel]:p,c=hv(x,p)+hv(p,y)-hv(x,y);if(c<bc){bc=c;b=i}}a.splice(b,0,id);modal();render(1);toast('เพิ่มแล้ว งบคำนวณใหม่ให้ทันที')},
-swap(d,i){const cur=d<0?P[S.plan.hotel]:P[S.plan.days[d][i]],u=new Set([...S.plan.days.flat(),S.plan.hotel]),w=d<0?-9:wd(S.cfg,d),l=P.filter(p=>p.t==cur.t&&!u.has(p.i)&&ok(p,S.cfg)&&p.x!=w).sort((a,b)=>hv(cur,a)-hv(cur,b)).slice(0,3);
- modal(`<h3>เปลี่ยนจุดนี้ — 3 ทางเลือกใกล้เคียง</h3><p class=m>แทน: ${cur.em} ${cur.n}</p>${l.map(p=>`<div class=row style="margin:8px 0"><div>${p.em} <b>${p.n}</b><div class=m>ห่าง ${hv(cur,p).toFixed(1)} กม. · ${p.p?f(p.p)+'฿':'ฟรี'} (${p.p>=cur.p?'+':''}${f(p.p-cur.p)}฿)</div></div><button class="b sm" onclick="A.rep(${d},${i},${p.i})">เลือก</button></div>`).join('')||'<p class=m>ไม่มีทางเลือกอื่นที่ตรงเงื่อนไข</p>'}`)},
-rep(d,i,id){if(d<0)S.plan.hotel=id;else S.plan.days[d][i]=id;modal();render(1);toast('เปลี่ยนแล้ว งบคำนวณใหม่ให้ทันที')},
-book(id){track('click');const p=P[id],c=S.cfg,n=p.t=='H'?rooms(c)*(c.days-1):pax(c),cm=p.p*n*S.ad.com/100;modal(`<h3>🔖 จองผ่านพาร์ทเนอร์</h3><div class=warn>ตัวอย่างสำหรับ Demo — ยังไม่มีการจองจริง</div><p><b>${p.em} ${p.n}</b><br>ยอดโดยประมาณ ${f(p.p*n)} ฿</p><p class=m>ระบบบันทึกการคลิกแล้ว (รวม ${S.ev.click} ครั้งในอุปกรณ์นี้) ในระบบจริงจะพาไปหน้าจองของพาร์ทเนอร์พร้อมรหัสอ้างอิง TF-${p.i}-${S.ev.click} ทำให้เรารับค่าคอมมิชชันประมาณ ${f(cm)} ฿ (${S.ad.com}%)</p><a class=b target=_blank rel=noopener href="${gp(p)}">📍 ดูเส้นทางไปที่นี่</a>`)},
-pay(t){track('paid');modal(`<h3>⭐ ${t}</h3><div class=warn>จำลองเท่านั้น ไม่มีการตัดเงินจริง</div><p class=m>บันทึกเป็นการสมัครจำลองแล้ว (${S.ev.paid} ครั้งในอุปกรณ์นี้) และจะไปรวมในหน้า Dashboard ผู้ดูแล</p>`)},
-ad(){$('#ad').innerHTML=admBody()},
-nearest(){return P.filter(p=>p.t!='H').sort((a,b)=>hv(S.me,a)-hv(S.me,b))[0]},
-near(){const l=P.filter(p=>p.t!='H').sort((a,b)=>hv(S.me,a)-hv(S.me,b)).slice(0,5);modal(`<h3>📍 ใกล้คุณตอนนี้</h3>${l.map(p=>`<div class=row style="margin:8px 0"><div>${p.em} <b>${p.n}</b><div class=m>${hv(S.me,p).toFixed(1)} กม. ตามถนน (ประมาณ)</div></div><a class="b sm" target=_blank rel=noopener href="${gp(p)}">นำทาง</a></div>`).join('')}`)},
-gps(){if(!navigator.geolocation)return toast('เบราว์เซอร์นี้ไม่รองรับ GPS');toast('กำลังหาตำแหน่ง… กด “อนุญาต” เมื่อเบราว์เซอร์ถาม');
- try{navigator.geolocation.watchPosition(p=>{const first=!S.me;S.me={la:p.coords.latitude,lo:p.coords.longitude,ac:p.coords.accuracy};if(first){toast('พบตำแหน่งของคุณแล้ว 📍');if(S.v=='res'||S.v=='home')render(1)}else if(S.v=='res'){$('#gps').innerHTML=gpsBox();$('#map').innerHTML=mapSvg(S.day)}},e=>toast(e.code==1?'ไม่ได้รับอนุญาตใช้ตำแหน่ง — เปิดสิทธิ์ Location ให้เว็บนี้ แล้วลองใหม่ (ถ้าเปิดในพรีวิว ให้เปิดลิงก์ในแท็บใหม่)':'หาตำแหน่งไม่ได้ ลองออกที่โล่งหรือเปิด GPS ในเครื่อง'),{enableHighAccuracy:true,maximumAge:5000,timeout:20000})}catch(e){toast('เปิด GPS ไม่สำเร็จ')}},
-share(){const c=S.cfg,r=calc(S.plan,c),tx=`🌴 ทริป${c.prov||'จันทบุรี'} ${c.days} วัน ${c.a+c.e+c.k} คน\n💰 ใช้ ${f(r.total)} ฿ จากงบ ${f(c.budget)} ฿\n`+r.d.map((d,i)=>`วันที่ ${i+1}: ${d.rows.map(x=>x.p.n).join(' → ')}`).join('\n')+`\n✨ วางแผนด้วย TripFit ${location.href.split('#')[0]}`;S.tx=tx;
- modal(`<div class=sc><div class=m style="color:#e6f4f1">TripFit · ${c.prov||'จันทบุรี'}</div><div class=k>${c.days} วัน · ${f(r.total)} ฿</div><div style="font-size:14px">งบ ${f(c.budget)} ฿ · ${c.a+c.e+c.k} คน · ${r.km.toFixed(0)} กม.</div><hr style="border:0;border-top:1px solid #fff4">${r.d.map((d,i)=>`<div style="font-size:14px;margin:4px 0"><b>วัน ${i+1}</b> ${d.rows.map(x=>x.p.em).join(' ')}</div>`).join('')}</div><textarea id=tx readonly style="width:100%;box-sizing:border-box;height:110px;margin:10px 0;border-radius:10px;border:1px solid var(--ln);background:var(--cd);color:var(--ink);font:inherit;padding:8px">${tx}</textarea><button class=b onclick="A.copy()">📋 คัดลอกข้อความ/ลิงก์</button>`)},
-copy(){const t=S.tx,ok=()=>toast('คัดลอกแล้ว');try{navigator.clipboard.writeText(t).then(ok,()=>A.cp2())}catch(e){A.cp2()}},
-cp2(){const e=$('#tx');e.select();try{document.execCommand('copy');toast('คัดลอกแล้ว')}catch(x){toast('กดค้างที่ข้อความแล้วเลือกคัดลอก')}}};
-function render(keep){setProv(S.v=='wiz'?W.prov:S.cfg?S.cfg.prov||'จันทบุรี':W.prov);$('#app').innerHTML=V[S.v]();document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.v==S.v));if(!keep)scrollTo(0,0)}
-track('visit');render();
-</script></body></html>
+const FEE_SELL=0.10,FEE_TOP=0.03,BASE="https://claude.ai/artifact/LZyoyuHep9QMH9MraDVevu";
+const CATS={"ออกแบบ":["🎨","#ffd9e2"],"โปรแกรมมิ่ง":["💻","#d6e6ff"],"วิดีโอ/เสียง":["🎬","#e5dcff"],"การตลาด":["📣","#ffeab0"],"เขียน/แปล":["✍️","#cdf5e8"],"ที่ปรึกษา":["💡","#ffe0c7"]};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const baht=n=>"฿"+(Math.round(n*100)/100).toLocaleString("th-TH");
+let db,user,myId,myName0="",P={},S=[],W={bal:0},ob=[],os=[],ta=[],tb=[],M=[],unsub=null,opened=0;
+let view="home",cat="ทั้งหมด",q="",chatOpen=false,chatWith=null;
+const pname=id=>(P[id]&&P[id].name)||(id===myId&&myName0)||"ผู้ใช้ "+String(id).slice(-4);
+const pav=(id,c="")=>{const p=P[id];return p&&p.avatar?`<span class="av ${c}" style="background-image:url(${p.avatar})"></span>`:`<span class="av ${c}">${esc(pname(id)[0]||"?")}</span>`};
+const orders=()=>[...ob,...os].filter((o,i,a)=>a.findIndex(x=>x.id===o.id)===i).sort((a,b)=>b.ts-a.ts);
+const threads=()=>[...ta,...tb].filter((o,i,a)=>a.findIndex(x=>x.id===o.id)===i).sort((a,b)=>b.ts-a.ts);
+const pair=o=>[myId,o].sort().join("_").replace(/[^\w]/g,"");
+function toast(t){const d=document.createElement("div");d.className="toast";d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),2400)}
+function modal(h){const o=document.createElement("div");o.className="ov";o.innerHTML=`<div class="md">${h}</div>`;o.onclick=e=>{if(e.target===o)o.remove()};document.body.appendChild(o);return o}
+const closeM=()=>document.querySelectorAll(".ov").forEach(o=>o.remove());
+const go=v=>{view=v;render()};
+function pick(max,cb){const i=document.createElement("input");i.type="file";i.accept="image/*";i.onchange=()=>{const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*k;c.height=im.height*k;c.getContext("2d").drawImage(im,0,0,c.width,c.height);cb(c.toDataURL("image/jpeg",.72))};im.src=r.result};r.readAsDataURL(f)};i.click()}
+async function boot(){
+  try{user=await claude.use("user");db=await claude.use("db")}catch(e){}
+  if(db&&user){myId=await user.id();if(myId){myName0=(await user.me()).name||""}}
+  if(!db||!myId){render();return}
+  const col=n=>db.collection(n);
+  col("profiles").onSnapshot(s=>{P={};s.docs.forEach(d=>P[d.id]=d.data());render()});
+  col("services").onSnapshot(s=>{S=s.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>b.ts-a.ts);render();const h=location.hash.slice(1);if(h&&!opened&&S.find(x=>x.id===h)){opened=1;detail(h)}});
+  db.doc("wallets/"+myId).onSnapshot(s=>{W=s.exists?s.data():{bal:0};render()});
+  const m=s=>s.docs.map(d=>({id:d.id,...d.data()}));
+  col("orders").where("buyer","==",myId).onSnapshot(s=>{ob=m(s);render()});
+  col("orders").where("seller","==",myId).onSnapshot(s=>{os=m(s);render()});
+  col("threads").where("a","==",myId).onSnapshot(s=>{ta=m(s);chatUI()});
+  col("threads").where("b","==",myId).onSnapshot(s=>{tb=m(s);chatUI()});
+  render();chatUI();
+}
+function render(){
+  const tabs=[["home","ตลาดงาน"],["shop","ร้านของฉัน"],["orders","คำสั่งจ้าง"],["wallet","กระเป๋าเงิน"]];
+  $("#nav").innerHTML=tabs.map(t=>`<button class="${view===t[0]?"on":""}" onclick="go('${t[0]}')">${t[1]}</button>`).join("");
+  $("#me").innerHTML=myId?`<span class="tag">${PLANS[cur(myId)].n} · ${baht(W.bal||0)}</span><button class="row" style="border:0;background:none;gap:8px" onclick="profile()">${pav(myId)}<b>${esc(pname(myId))}</b></button>`:"";
+  const a=$("#app");
+  if(!myId){a.innerHTML=`<div class="empty"><big>🔐</big><h2>กรุณาเข้าสู่ระบบ claude.ai</h2><p>เปิดหน้านี้ในบัญชี claude.ai ที่ล็อกอินแล้ว จึงจะใช้ระบบจ้างงานได้</p></div>`;return}
+  a.innerHTML=({home,shop,orders:ordersV,wallet})[view]();
+}
+const stepsH=`<div class="steps"><div class="step"><i style="background:#cdf5e8">💰</i><div><b>1. เติมเงิน</b><span>เติมเข้ากระเป๋าของคุณ</span></div></div><div class="step"><i style="background:#ffeab0">🔎</i><div><b>2. เลือกงาน</b><span>ดูบริการแล้วกดจ้าง</span></div></div><div class="step"><i style="background:#ffd9e2">✅</i><div><b>3. รับงาน</b><span>งานเสร็จกดยืนยัน เงินถึงผู้รับจ้าง</span></div></div></div>`;
+function gridH(){
+  const l=S.filter(s=>(cat==="ทั้งหมด"||s.cat===cat)&&(!q||(s.title+s.desc).toLowerCase().includes(q.toLowerCase())));
+  if(!l.length)return `<div class="empty"><big>🛍️</big><h3>${S.length?"ไม่พบบริการที่ค้นหา":"ยังไม่มีใครเปิดร้าน"}</h3><p>มาเป็นคนแรกที่ลงบริการสิ</p><button class="btn sun" onclick="go('shop')">เปิดร้านรับงาน</button></div>`;
+  return `<div class="grid">${l.map(card).join("")}</div>`;
+}
+const thumb=s=>s.img?`<div class="thumb" style="background-image:url(${s.img})"></div>`:`<div class="thumb" style="background:${CATS[s.cat]?CATS[s.cat][1]:"#e6f1ff"}">${CATS[s.cat]?CATS[s.cat][0]:"✨"}</div>`;
+const card=s=>`<div class="card" style="${acc(s.owner)}" tabindex="0" onclick="detail('${s.id}')" onkeydown="if(event.key==='Enter')detail('${s.id}')">${thumb(s)}<div class="cb"><span class="tag">${esc(s.cat)}</span> ${left(s)}<h3 style="margin-top:6px">${esc(s.title)}</h3><div class="who">${pav(s.owner)}<span class="sp">${esc(pname(s.owner))}</span><span class="price">${baht(s.price)}</span></div></div></div>`;
+function home(){
+  return `<section class="hero"><h1>จ้างงานฟรีแลนซ์ หรือเปิดร้านรับงานของคุณเอง</h1><p>เลือกบริการที่ใช่ คุยกับผู้รับจ้างได้ทันที จ่ายผ่านกระเป๋าเงินในเว็บ</p><div class="search"><input placeholder="ค้นหาบริการ เช่น โลโก้ ตัดต่อ" value="${esc(q)}" oninput="q=this.value;$('#grid').innerHTML=gridH()"></div></section>${stepsH}
+  <div class="cats">${["ทั้งหมด",...Object.keys(CATS)].map(c=>`<button class="chip ${c===cat?"on":""}" onclick="cat='${c}';render()">${c}</button>`).join("")}</div><div id="grid">${gridH()}</div>`;
+}
+function detail(id){
+  const s=S.find(x=>x.id===id);if(!s)return;const mine=s.owner===myId;closeM();
+  modal(`<div class="im" style="${s.img?`background-image:url(${s.img})`:`background:${CATS[s.cat]?CATS[s.cat][1]:"#e6f1ff"}`}">${s.img?"":(CATS[s.cat]?CATS[s.cat][0]:"✨")}</div>
+  <span class="tag">${esc(s.cat)}</span><h2 style="margin:6px 0">${esc(s.title)}</h2><div class="who" style="margin:0 0 10px">${pav(s.owner)}<span>${esc(pname(s.owner))} · ส่งงานภายใน ${s.days||3} วัน</span></div>
+  <p style="white-space:pre-wrap">${esc(s.desc)}</p><div class="row" style="margin:14px 0"><span class="price" style="font-size:28px">${baht(s.price)}</span><span class="sp" style="color:var(--mut);font-size:13px">จ่ายเต็มราคา ไม่มีค่าธรรมเนียมฝั่งผู้จ้าง</span></div>
+  <div class="row">${mine?`<button class="btn pink sp" onclick="delSvc('${s.id}')">ลบบริการนี้</button>`:`<button class="btn sun sp" onclick="buy('${s.id}')">จ้างงานนี้</button><button class="btn out" onclick="closeM();openChat('${s.owner}')">💬 แชท</button>`}<button class="btn out" onclick="share('${s.id}')">🔗 แชร์</button></div>`);
+}
+async function share(id){const s=S.find(x=>x.id===id),url=BASE+"#"+id;
+  try{if(navigator.share){await navigator.share({title:s.title,text:"ดูงานนี้บน EZWORK",url});return}}catch(e){return}
+  try{await navigator.clipboard.writeText(url);toast("คัดลอกลิงก์แล้ว")}catch(e){const o=modal(`<h3>ลิงก์สำหรับแชร์</h3><input readonly value="${url}" onfocus="this.select()">`);o.querySelector("input").select()}}
+async function delSvc(id){await db.doc("services/"+id).delete();closeM();toast("ลบบริการแล้ว")}
+async function buy(id){
+  const s=S.find(x=>x.id===id);
+  if((W.bal||0)<s.price){closeM();modal(`<h2>เงินในกระเป๋าไม่พอ 💸</h2><p>บริการนี้ ${baht(s.price)} คุณมี ${baht(W.bal||0)} ต้องเติมอีก ${baht(s.price-(W.bal||0))}</p><button class="btn sun" onclick="closeM();topup()">เติมเงินเลย</button>`);return}
+  await db.doc("wallets/"+myId).set({bal:Math.round(((W.bal||0)-s.price)*100)/100});
+  await db.collection("orders").add({buyer:myId,seller:s.owner,sid:s.id,title:s.title,price:s.price,st:"doing",ts:Date.now()});
+  closeM();toast("สั่งจ้างแล้ว เงินถูกพักไว้ให้");view="orders";render();
+}
+function ordersV(){
+  const l=orders();if(!l.length)return `<div class="empty"><big>📦</big><h3>ยังไม่มีคำสั่งจ้าง</h3><button class="btn sun" onclick="go('home')">ไปเลือกงาน</button></div>`;
+  return `<h2 style="margin:14px 0">คำสั่งจ้าง</h2>`+l.map(o=>{const buyer=o.buyer===myId,other=buyer?o.seller:o.buyer;
+    return `<div class="panel row">${pav(other)}<div class="sp"><b>${esc(o.title)}</b><br><span style="color:var(--mut);font-size:13px">${buyer?"คุณจ้าง":"จ้างโดย"} ${esc(pname(other))}${buyer?"":" · คุณจะได้ "+baht(o.price*(1-FEE_SELL))+" (หัก "+FEE_SELL*100+"%)"}</span></div>
+    <span class="tag">${o.st==="done"?"เสร็จแล้ว":"กำลังทำ"}</span>${buyer&&o.st==="doing"?`<button class="btn" onclick="done('${o.id}')">ยืนยันรับงาน</button>`:""}<button class="btn out" onclick="openChat('${other}')">💬</button></div>`}).join("");
+}
+async function done(id){const o=orders().find(x=>x.id===id),r=db.doc("wallets/"+o.seller),w=await r.get();
+  await r.set({bal:Math.round(((w.exists?w.data().bal:0)+o.price*(1-FEE_SELL))*100)/100});await db.doc("orders/"+id).update({st:"done"});toast("ยืนยันแล้ว โอนเงินให้ผู้รับจ้างเรียบร้อย")}
+function shop(){
+  const m=S.filter(s=>s.owner===myId);
+  return `${shopHead()}<div class="row" style="margin:14px 0"><h2 class="sp">ร้านของฉัน</h2><button class="btn sun" onclick="newSvc()">+ ลงบริการใหม่</button></div>
+  <div class="panel" style="background:var(--soft)">เปิดร้านฟรี ตั้งราคาเองได้ เมื่อมีคนจ้างและกดยืนยันรับงาน ระบบหักค่าธรรมเนียม ${FEE_SELL*100}% แล้วโอนเข้ากระเป๋าคุณ</div>
+  ${m.length?`<div class="grid">${m.map(card).join("")}</div>`:`<div class="empty"><big>🏪</big><h3>ร้านยังว่างอยู่</h3><p>ลงบริการแรกให้คนเห็นผลงานของคุณ</p></div>`}`;
+}
+function newSvc(){let img="";
+  const o=modal(`<h2>ลงบริการใหม่</h2><div class="up" id="pi">📷 กดเพื่อใส่รูปปกงาน</div><label>ชื่อบริการ</label><input id="t" maxlength="70" placeholder="เช่น ออกแบบโลโก้ร้านกาแฟ">
+  <div class="row"><div class="sp"><label>หมวดหมู่</label><select id="c">${Object.keys(CATS).map(c=>`<option>${c}</option>`).join("")}</select></div><div class="sp"><label>ราคา (บาท)</label><input id="p" type="number" min="20"></div><div class="sp"><label>ส่งงานกี่วัน</label><input id="d" type="number" min="1" value="3"></div></div>
+  <label>รายละเอียด</label><textarea id="x" rows="4" maxlength="500" placeholder="บอกว่าคุณทำอะไรให้ลูกค้าบ้าง"></textarea><br><button class="btn sun" style="width:100%" id="ok">ลงบริการ</button>`);
+  o.querySelector("#pi").onclick=()=>pick(640,u=>{img=u;const e=o.querySelector("#pi");e.style.backgroundImage=`url(${u})`;e.style.height="140px";e.textContent=""});
+  o.querySelector("#ok").onclick=async()=>{const t=o.querySelector("#t").value.trim(),p=+o.querySelector("#p").value,x=o.querySelector("#x").value.trim();
+    if(!t||!(p>=20)||!x){toast("กรอกชื่อ ราคา (ขั้นต่ำ 20) และรายละเอียดให้ครบ");return}
+    await db.collection("services").add({owner:myId,title:t,cat:o.querySelector("#c").value,price:p,days:+o.querySelector("#d").value||3,desc:x,img,ts:Date.now(),exp:expFor()});await db.doc("members/"+myId).set({...(MS[myId]||{}),last:Date.now()});closeM();toast("ลงบริการแล้ว")}}
+function profile(){let av=(P[myId]||{}).avatar||"";
+  const o=modal(`<h2>ตั้งค่าโปรไฟล์</h2><div class="row" style="margin:12px 0"><div id="pa" onclick="" style="cursor:pointer">${pav(myId,"l")}</div><span style="color:var(--mut)">กดที่รูปเพื่อเปลี่ยนรูปโปรไฟล์</span></div>
+  <label>ชื่อที่แสดง</label><input id="n" maxlength="30" value="${esc(P[myId]?P[myId].name:myName0)}"><label>แนะนำตัว</label><textarea id="b" rows="3" maxlength="200">${esc((P[myId]||{}).bio||"")}</textarea><br><button class="btn sun" style="width:100%" id="ok">บันทึก</button>`);
+  o.querySelector("#pa").onclick=()=>pick(160,u=>{av=u;o.querySelector("#pa").innerHTML=`<span class="av l" style="background-image:url(${u})"></span>`});
+  o.querySelector("#ok").onclick=async()=>{const n=o.querySelector("#n").value.trim();if(!n){toast("ใส่ชื่อก่อนนะ");return}
+    await db.doc("profiles/"+myId).set({name:n,bio:o.querySelector("#b").value.trim(),avatar:av});closeM();toast("บันทึกโปรไฟล์แล้ว")}}
+function wallet(){
+  return `<div class="panel" style="background:var(--pri);color:#fff;border:0"><div>ยอดเงินคงเหลือ</div><div class="bal" style="color:#fff">${baht(W.bal||0)}</div><div class="row"><button class="btn sun" onclick="topup()">+ เติมเงิน</button><button class="btn out" onclick="withdraw()">ถอนเงิน</button></div></div>
+  <div class="panel"><h3>ค่าธรรมเนียม</h3><p style="margin:6px 0 0;color:var(--mut)">เติมเงินเท่าไหร่ก็ได้ (ขั้นต่ำ ฿50) หักค่าธรรมเนียมเติมเงิน ${FEE_TOP*100}% · ผู้รับจ้างหัก ${FEE_SELL*100}% เมื่อได้รับเงิน · ถอนขั้นต่ำ ฿100</p></div>`;
+}
+function topup(){
+  const o=modal(`<h2>เติมเงิน</h2><div class="row" style="margin:10px 0">${[100,300,500,1000,3000].map(n=>`<button class="chip" data-n="${n}">${baht(n)}</button>`).join("")}</div><label>หรือใส่จำนวนเอง (บาท)</label><input id="a" type="number" min="50"><p id="pv" style="color:var(--mut)"></p><button class="btn sun" style="width:100%" id="go">สร้าง QR ชำระเงิน</button>`);
+  const a=o.querySelector("#a"),pv=()=>{const v=+a.value;o.querySelector("#pv").textContent=v>=50?`ค่าธรรมเนียม ${baht(v*FEE_TOP)} · เข้ากระเป๋า ${baht(v*(1-FEE_TOP))}`:""};
+  a.oninput=pv;o.querySelectorAll("[data-n]").forEach(b=>b.onclick=()=>{a.value=b.dataset.n;pv()});
+  o.querySelector("#go").onclick=()=>{const v=+a.value;if(!(v>=50)){toast("เติมขั้นต่ำ 50 บาท");return}const net=Math.round(v*(1-FEE_TOP)*100)/100;
+    o.querySelector(".md").innerHTML=`<h2>สแกนจ่าย ${baht(v)}</h2><div style="width:180px;height:180px;margin:14px auto;background:repeating-conic-gradient(var(--ink) 0 25%,var(--bg) 0 50%) 0 0/24px 24px;border:10px solid #fff;border-radius:12px"></div><p style="text-align:center;color:var(--mut)">นี่คือหน้าจำลอง ยังไม่ได้เชื่อมธนาคารจริง</p><button class="btn sun" style="width:100%" id="pay">ฉันจ่ายแล้ว</button>`;
+    o.querySelector("#pay").onclick=async()=>{await db.doc("wallets/"+myId).set({bal:Math.round(((W.bal||0)+net)*100)/100});closeM();toast("เติมเงินสำเร็จ "+baht(net))}}}
+async function withdraw(){const b=W.bal||0;if(b<100){toast("ถอนได้เมื่อมีเงินอย่างน้อย 100 บาท");return}await db.doc("wallets/"+myId).set({bal:0});toast("ส่งคำขอถอน "+baht(b)+" แล้ว (จำลอง)")}
+/* chat widget */
+async function openChat(other){if(other===myId)return;chatOpen=true;chatWith=other;const pid=pair(other),r=db.doc("threads/"+pid);
+  if(!(await r.get()).exists){const [a,b]=[myId,other].sort();await r.set({a,b,last:"",ts:Date.now()})}subMsgs();chatUI()}
+function subMsgs(){if(unsub)unsub();M=[];unsub=db.collection("threads/"+pair(chatWith)+"/msgs").onSnapshot(s=>{M=s.docs.map(d=>d.data()).sort((a,b)=>a.ts-b.ts);const l=$("#log");if(l){l.innerHTML=logH();l.scrollTop=l.scrollHeight}})}
+const logH=()=>M.map(m=>`<div class="m ${m.from===myId?"me":""}">${esc(m.text)}</div>`).join("")||`<div class="empty" style="padding:30px 0">ทักทายได้เลย 👋</div>`;
+function chatUI(){const f=$("#fab");if(!f||!myId)return;
+  if(!chatOpen){f.innerHTML=`<button class="bub" aria-label="เปิดแชท" onclick="chatOpen=true;chatUI()">💬${threads().length?`<s>${threads().length}</s>`:""}</button>`;return}
+  const conv=!!chatWith;
+  f.innerHTML=`<div class="cw"><div class="ch">${conv?`<button aria-label="กลับ" onclick="chatWith=null;chatUI()">‹</button>${pav(chatWith)}<span class="sp">${esc(pname(chatWith))}</span>`:`<span class="sp">💬 แชทของฉัน</span>`}<button aria-label="ย่อแชท" onclick="chatOpen=false;chatUI()">–</button></div>
+  ${conv?`<div class="cl" id="log">${logH()}</div><form class="snd" onsubmit="send(event)"><input id="mi" autocomplete="off" placeholder="พิมพ์ข้อความ..."><button class="btn">ส่ง</button></form>`:`<div class="cl">${threads().map(t=>{const o=t.a===myId?t.b:t.a;return `<button class="th" onclick="openChat('${o}')">${pav(o)}<span><b>${esc(pname(o))}</b><small>${esc(t.last||"เริ่มแชทใหม่")}</small></span></button>`}).join("")||`<div class="empty" style="padding:40px 10px">ยังไม่มีแชท<br>กด 💬 ที่หน้าบริการเพื่อคุยกับผู้รับจ้าง</div>`}</div>`}</div>`;
+  const l=$("#log");if(l)l.scrollTop=l.scrollHeight}
+async function send(e){e.preventDefault();const i=$("#mi"),t=i.value.trim();if(!t)return;i.value="";const pid=pair(chatWith);
+  await db.collection("threads/"+pid+"/msgs").add({from:myId,text:t,ts:Date.now()});await db.doc("threads/"+pid).update({last:t,ts:Date.now()})}
+</script>
+<script>
+/* ===== v2: แอดมิน / แก้ไขหน้าเว็บ / ค้นหาสด / หมวดหมู่เอง ===== */
+const DEF={heroTitle:"มีฝีมือก็ขายได้ มีงานก็หาคนทำได้",heroSub:"ตลาดงานฟรีแลนซ์ คุยกันตรงๆ จ่ายผ่านกระเป๋าเงินในเว็บ",typing:"โลโก้,ตัดต่อวิดีโอ,ออกแบบเว็บไซต์,แปลภาษา,ถ่ายภาพ",heroImg:"",notice:"",
+show:{notice:1,steps:1,banners:1,cats:1,tiles:0},
+steps:[{i:"",t:"1. เติมเงิน",d:"เติมเข้ากระเป๋าของคุณ"},{i:"",t:"2. เลือกงาน",d:"ดูบริการแล้วกดจ้าง"},{i:"",t:"3. รับงาน",d:"งานเสร็จกดยืนยัน เงินถึงผู้รับจ้าง"}],
+banners:[{id:"b1",t:"ลงบริการวันนี้ รับลูกค้าใหม่",s:"เปิดร้านฟรี ไม่มีค่าสมัคร",c:"#0e6b5c",img:"",k:""},{id:"b2",t:"งานออกแบบยอดนิยม",s:"โลโก้ แบนเนอร์ โปสเตอร์",c:"#d4553a",img:"",k:"ออกแบบ"}],
+cats:Object.entries(CATS).map(([n,v])=>({id:n,n,i:v[0],c:v[1],img:""}))};
+const cl=()=>JSON.parse(JSON.stringify(DEF));
+let C=cl(),B={},ADM=false,E=false,banned=false,at="users",tyT,tyW=0,tyI=0,tyD=0;
+const nz=s=>String(s||"").toLowerCase(),vis=s=>!B[s.owner]&&live(s);
+const hit=s=>{const h=nz(s.title+" "+s.desc+" "+s.cat+" "+pname(s.owner));return nz(q).split(/\s+/).filter(Boolean).every(t=>h.includes(t))};
+const ED=(k,x="")=>E?` class="ed ${x}" onclick="event.stopPropagation();${k}"`:(x?` class="${x}"`:"");
+const saveC=()=>db.doc("config/site").set(C).then(()=>toast("บันทึกแล้ว")).catch(()=>toast("บันทึกไม่ได้ (ต้องเป็นแอดมิน)"));
+const allCats=()=>{const m=C.cats.map(c=>c.n);S.forEach(s=>{if(s.cat&&!m.includes(s.cat))m.push(s.cat)});return m};
+const d2b=u=>{const[h,b]=u.split(","),m=h.match(/:(.*?);/)[1],s=atob(b),a=new Uint8Array(s.length);for(let i=0;i<s.length;i++)a[i]=s.charCodeAt(i);return new Blob([a],{type:m})};
+function upImg(max,cb){pick(max,async u=>{try{const a=await claude.use("assets");if(!a)throw 0;cb((await a.upload(d2b(u))).url)}catch(e){cb(u)}})}
+const imgM=u=>`<div class="up" id="im" style="${u?`background-image:url(${u});height:120px`:""}">${u?"":"📷 กดเพื่อเลือกรูป"}</div><button class="btn out" id="ri" style="margin-top:8px;padding:6px 14px">ลบรูป</button>`;
+function imgB(o,max,cb){const e=o.querySelector("#im");e.onclick=()=>upImg(max,u=>{cb(u);e.style.backgroundImage=`url(${u})`;e.style.height="120px";e.textContent=""});o.querySelector("#ri").onclick=()=>{cb("");e.style.backgroundImage="";e.style.height="";e.textContent="📷 กดเพื่อเลือกรูป"}}
+const fld=(id,l,v="",t)=>`<label>${l}</label>${t?`<textarea id="${id}" rows="3">${esc(v)}</textarea>`:`<input id="${id}" value="${esc(v)}">`}`;
+const gv=(o,id)=>o.querySelector("#"+id).value.trim();
+const sv=`<br><button class="btn sun" style="width:100%" id="ok">บันทึก</button>`;
+function edT(k){const o=modal(`<h2>แก้ไขข้อความ</h2>${fld("v","",C[k],1)}${k=="typing"?'<p class="mut">คั่นแต่ละคำด้วยเครื่องหมาย ,</p>':""}${sv}`);o.querySelector("#ok").onclick=()=>{C[k]=gv(o,"v");saveC();closeM()}}
+function edStep(i){const s=C.steps[i],o=modal(`<h2>แก้ไขขั้นตอน</h2>${fld("a","ไอคอน (อีโมจิ)",s.i)}${fld("b","หัวข้อ",s.t)}${fld("c","คำอธิบาย",s.d)}${sv}`);o.querySelector("#ok").onclick=()=>{Object.assign(s,{i:gv(o,"a"),t:gv(o,"b"),d:gv(o,"c")});saveC();closeM()}}
+function edHero(){let img=C.heroImg;const o=modal(`<h2>รูปพื้นหลังส่วนหัว</h2>${imgM(img)}${sv}`);imgB(o,1200,u=>img=u);o.querySelector("#ok").onclick=()=>{C.heroImg=img;saveC();closeM()}}
+function edB(i){const b=i>=0?C.banners[i]:{id:"b"+Date.now(),t:"",s:"",c:"#0e6b5c",img:"",k:""};let img=b.img;
+  const o=modal(`<h2>${i>=0?"แก้ไข":"เพิ่ม"}แบนเนอร์</h2>${imgM(img)}${fld("t","หัวข้อ",b.t)}${fld("s","ข้อความรอง",b.s)}${fld("k","คำค้น/หมวดที่เปิดเมื่อกดแบนเนอร์",b.k)}<label>สีพื้น (เมื่อไม่มีรูป)</label><input id="c" type="color" value="${b.c}" style="height:44px">${sv}`);
+  imgB(o,900,u=>img=u);o.querySelector("#ok").onclick=()=>{Object.assign(b,{t:gv(o,"t"),s:gv(o,"s"),k:gv(o,"k"),c:gv(o,"c"),img});if(i<0)C.banners.push(b);saveC();closeM()}}
+const delB=i=>{C.banners.splice(i,1);saveC()};
+function edC(i,n0){const c=i>=0?C.cats[i]:{id:"c"+Date.now(),n:n0||"",i:"✨",c:"#d6e6ff",img:""};let img=c.img;
+  const o=modal(`<h2>${i>=0?"แก้ไข":"เพิ่ม"}หมวดหมู่</h2>${fld("n","ชื่อหมวด",c.n)}${fld("e","ไอคอน (อีโมจิ)",c.i)}<label>สี</label><input id="c" type="color" value="${c.c}" style="height:44px"><label>รูปประกอบ</label>${imgM(img)}${sv}${i>=0?`<button class="btn pink" style="width:100%;margin-top:10px" id="dl">ลบหมวดนี้</button>`:""}`);
+  imgB(o,600,u=>img=u);o.querySelector("#ok").onclick=()=>{const n=gv(o,"n");if(!n){toast("ใส่ชื่อหมวดก่อน");return}Object.assign(c,{n,i:gv(o,"e")||"✨",c:gv(o,"c"),img});if(i<0)C.cats.push(c);saveC();closeM()};
+  if(i>=0)o.querySelector("#dl").onclick=()=>{C.cats.splice(i,1);saveC();closeM()}}
+function ban(id){const o=modal(`<h2>แบน ${esc(pname(id))}</h2>${fld("w","เหตุผล (ไม่บังคับ)")}${sv}`);o.querySelector("#ok").onclick=async()=>{await db.doc("bans/"+id).set({name:pname(id),why:gv(o,"w"),ts:Date.now()});closeM();toast("แบนแล้ว")}}
+const unban=async id=>{await db.doc("bans/"+id).delete();toast("ปลดแบนแล้ว")};
+const tg=k=>{C.show[k]=C.show[k]?0:1;saveC()};
+function setCat(n){cat=(cat==n||n=="ทั้งหมด")?"ทั้งหมด":n;render();const g=$("#grid");if(g)g.scrollIntoView({behavior:"smooth",block:"start"})}
+const ci=c=>`<span class="ci" style="${c.img?`background-image:url(${c.img})`:`background:${c.c}`}">${c.img?"":c.i}</span>`;
+function catRow(){const L=[{n:"ทั้งหมด",i:-2,c:{i:"🔥",c:"#ffeab0"}},...allCats().map(n=>{const i=C.cats.findIndex(c=>c.n==n);return{n,i,c:C.cats[i]||{i:"✨",c:"#e6f1ff"}}})];
+  return `<div class="crow">${L.map(x=>`<button class="ct ${cat==x.n?"on":""}" data-c="${esc(x.n)}" onclick="${E&&x.i!=-2?`edC(${x.i},this.dataset.c)`:"setCat(this.dataset.c)"}">${ci(x.c)}<span>${esc(x.n)}</span></button>`).join("")}${E?`<button class="ct" onclick="edC(-1)">${ci({i:"＋",c:"#d6e6ff"})}<span>เพิ่มหมวด</span></button>`:""}</div>`}
+function gridH(){const l=S.filter(s=>vis(s)&&(cat=="ทั้งหมด"||s.cat==cat)&&(!q.trim()||hit(s)));
+  if(!l.length)return `<div class="empty"><big>${q?"🔍":"🛍️"}</big><h3>${S.length?"ไม่พบบริการที่ค้นหา":"ยังไม่มีใครเปิดร้าน"}</h3><p>${q?"ลองพิมพ์คำอื่น หรือเลือกหมวดหมู่":"มาเป็นคนแรกที่ลงบริการสิ"}</p><button class="btn sun" onclick="go('shop')">เปิดร้านรับงาน</button></div>`;
+  return `${q.trim()?`<p class="mut">พบ ${l.length} บริการ</p>`:""}<div class="grid">${l.map(card).join("")}</div>`}
+function sugH(){if(!q.trim())return"";const t=nz(q.trim()),cs=allCats().filter(n=>nz(n).includes(t)).slice(0,3),ss=S.filter(s=>vis(s)&&hit(s)).slice(0,5);
+  if(!cs.length&&!ss.length)return `<div class="sg"><p class="mut" style="padding:12px 16px;margin:0">ไม่พบผลลัพธ์</p></div>`;
+  return `<div class="sg">${cs.map(n=>`<button data-c="${esc(n)}" onclick="setCat(this.dataset.c)">📂 หมวด ${esc(n)}</button>`).join("")}${ss.map(s=>`<button onclick="detail('${s.id}')">🔎 ${esc(s.title)}<small>${baht(s.price)}</small></button>`).join("")}</div>`}
+function upG(){const g=$("#grid");if(!g)return;g.innerHTML=gridH();$("#sug").innerHTML=sugH();$("#sx").hidden=!q}
+function typing(){clearInterval(tyT);const w=C.typing.split(",").map(s=>s.trim()).filter(Boolean);if(!w.length||!$("#ty"))return;
+  tyT=setInterval(()=>{const e=$("#ty");if(!e){clearInterval(tyT);return}const t=w[tyW%w.length];if(!tyD){if(++tyI>=t.length+8)tyD=1}else if(--tyI<=0){tyD=0;tyW++}e.textContent=t.slice(0,Math.max(0,tyI))},120)}
+function bnGo(i){const k=C.banners[i].k;if(!k)return;if(allCats().includes(k)){cat=k;q=""}else{cat="ทั้งหมด";q=k}render();const g=$("#grid");if(g)g.scrollIntoView({behavior:"smooth"})}
+function home(){const sh=C.show,bg=["#cdf5e8","#ffeab0","#ffd9e2"];
+  return `${(C.notice&&sh.notice)||E?`<div${ED("edT('notice')","note")}>📢 ${esc(C.notice||"(ยังว่าง) กดเพื่อใส่ประกาศ")}</div>`:""}
+  <section class="hero2 ${C.heroImg?"img":""}" style="${C.heroImg?`background-image:linear-gradient(#0b1b3acc,#0b1b3a99),url(${C.heroImg})`:""}">
+  <p${ED("edT('heroSub')")} style="margin:0">${esc(C.heroSub)}</p><h1${ED("edT('heroTitle')")}>${esc(C.heroTitle)}</h1>
+  <div class="ty"${ED("edT('typing')")}>อยากได้ <b id="ty"></b></div>
+  <div class="sbox"><span>🔍</span><input id="hs" autocomplete="off" placeholder="พิมพ์ค้นหาได้เลย เช่น โลโก้ ตัดต่อ ชื่อร้าน หรือหมวดหมู่" value="${esc(q)}" oninput="q=this.value;upG()"><button class="x" id="sx" aria-label="ล้าง" ${q?"":"hidden"} onclick="q='';$('#hs').value='';upG()">✕</button><div id="sug">${sugH()}</div></div>
+  ${E?`<button class="btn sun" style="margin-top:18px" onclick="edHero()">🖼 รูปพื้นหลัง</button>`:""}</section>
+  ${sh.steps||E?`<div class="steps">${C.steps.map((s,i)=>`<div${ED(`edStep(${i})`,"step")}><i style="background:${bg[i%3]}">${esc(s.i)}</i><div><b>${esc(s.t)}</b><span>${esc(s.d)}</span></div></div>`).join("")}</div>`:""}
+  ${sh.banners||E?`<div class="bns">${C.banners.map((b,i)=>`<div class="bn" style="background:${b.img?`linear-gradient(#0003,#0007),url(${b.img}) center/cover`:`linear-gradient(135deg,${b.c},color-mix(in srgb,${b.c} 55%,#000))`}" onclick="${E?`edB(${i})`:`bnGo(${i})`}"><div><b>${esc(b.t)}</b><span>${esc(b.s)}</span></div>${E?`<button class="xb" aria-label="ลบ" onclick="event.stopPropagation();delB(${i})">✕</button>`:""}</div>`).join("")}${E?`<div class="bn add" onclick="edB(-1)">＋ เพิ่มแบนเนอร์</div>`:""}</div>`:""}
+  ${sh.cats||E?catRow():""}
+  ${sh.tiles||E?`<div class="tiles">${C.cats.map((c,i)=>`<div class="tile" data-c="${esc(c.n)}" style="background:${c.img?`linear-gradient(#0000,#000a),url(${c.img}) center/cover`:`linear-gradient(135deg,${c.c},color-mix(in srgb,${c.c} 45%,#fff))`};${c.img?"":"color:#16304f"}" onclick="${E?`edC(${i})`:"setCat(this.dataset.c)"}"><span>${esc(c.i)}</span>${esc(c.n)}</div>`).join("")}</div>`:""}
+  <h2 style="margin:10px 0 12px">${cat=="ทั้งหมด"?"บริการยอดนิยม":esc(cat)}</h2><div id="grid">${gridH()}</div>`}
+function adminV(){let h=`<h2 style="margin:14px 0">🛡️ ระบบหลังบ้าน</h2><div class="row" style="margin-bottom:12px">${[["users","👥 ผู้ใช้"],["svc","🛍️ บริการ"],["site","⚙️ เว็บไซต์"]].map(t=>`<button class="btn ${at==t[0]?"":"out"}" onclick="at='${t[0]}';render()">${t[1]}</button>`).join("")}</div>`;
+  if(at=="users")h+=[...new Set([...Object.keys(P),...Object.keys(B)])].map(id=>{const b=B[id];return `<div class="panel row">${pav(id)}<div class="sp"><b>${esc(P[id]?pname(id):(b&&b.name)||id)}</b>${id==myId?' <span class="tag">คุณ</span>':""}${b?' <span class="tag" style="background:#ffd9e2;color:#cf4468">ถูกแบน</span>':""}<br><span class="mut">บริการ ${S.filter(s=>s.owner==id).length} รายการ${b&&b.why?" · "+esc(b.why):""}</span></div>${id==myId?"":b?`<button class="btn" onclick="unban('${id}')">ปลดแบน</button>`:`<button class="btn pink" onclick="ban('${id}')">แบน</button>`}</div>`}).join("");
+  if(at=="svc")h+=S.map(s=>`<div class="panel row"><div class="sp"><b>${esc(s.title)}</b><br><span class="mut">${esc(s.cat)} · ${baht(s.price)} · โดย ${esc(pname(s.owner))}</span></div><button class="btn pink" onclick="delSvc('${s.id}')">ลบ</button></div>`).join("")||`<div class="empty">ยังไม่มีบริการ</div>`;
+  if(at=="site")h+=`<div class="panel"><h3>เปิด/ปิดบล็อกหน้าแรก</h3>${[["notice","แถบประกาศ"],["steps","ขั้นตอน 3 ข้อ"],["banners","แบนเนอร์"],["cats","แถบหมวดหมู่"],["tiles","การ์ดหมวดหมู่"]].map(b=>`<label class="sw"><input type="checkbox" ${C.show[b[0]]?"checked":""} onchange="tg('${b[0]}')">${b[1]}</label>`).join("")}</div><button class="btn sun" onclick="E=true;go('home')">✎ ไปแก้ไขหน้าแรก (ข้อความ รูป แบนเนอร์ หมวด)</button>`;
+  return h}
+function render(){
+  const tabs=[["home","ตลาดงาน"],["shop","ร้านของฉัน"],["orders","คำสั่งจ้าง"],["wallet","กระเป๋าเงิน"],["plans","สมัครสมาชิก"]];if(ADM)tabs.push(["admin","🛡️ แอดมิน"]);
+  $("#nav").innerHTML=tabs.map(t=>`<button class="${view===t[0]?"on":""}" onclick="go('${t[0]}')">${t[1]}</button>`).join("");
+  $("#me").innerHTML=myId?`${ADM?`<button class="btn ${E?"sun":"out"}" style="padding:6px 14px" onclick="E=!E;render()">✎ ${E?"ออกจากโหมดแก้ไข":"แก้ไขหน้าเว็บ"}</button>`:""}<span class="tag">${PLANS[cur(myId)].n} · ${baht(W.bal||0)}</span><button class="row" style="border:0;background:none;gap:8px" onclick="profile()">${pav(myId)}<b>${esc(pname(myId))}</b></button>`:"";
+  const a=$("#app");
+  if(!myId){a.innerHTML=`<div class="empty"><big>🔐</big><h2>กรุณาเข้าสู่ระบบ claude.ai</h2><p>เปิดหน้านี้ในบัญชี claude.ai ที่ล็อกอินแล้ว จึงจะใช้ระบบจ้างงานได้</p></div>`;return}
+  if(banned){a.innerHTML=`<div class="lock"><big style="font-size:60px">🚫</big><h2>บัญชีนี้ถูกระงับการใช้งาน</h2><p class="mut">${esc((B[myId]||{}).why||"ติดต่อผู้ดูแลระบบ")}</p></div>`;$("#fab").innerHTML="";return}
+  if(view==="home"&&document.activeElement&&document.activeElement.id==="hs"){upG();return}
+  a.innerHTML=({home,shop,orders:ordersV,wallet,admin:adminV,plans:plansV})[view]();if(view==="home")typing()}
+function newSvc(){let img="";
+  const o=modal(`<h2>ลงบริการใหม่</h2><div class="up" id="pi">📷 กดเพื่อใส่รูปปกงาน</div><label>ชื่อบริการ</label><input id="t" maxlength="70" placeholder="เช่น ออกแบบโลโก้ร้านกาแฟ">
+  <div class="row"><div class="sp"><label>หมวดหมู่ (เลือกหรือพิมพ์เอง)</label><input id="c" list="cl" maxlength="24" placeholder="เช่น ถ่ายภาพ"><datalist id="cl">${allCats().map(c=>`<option value="${esc(c)}">`).join("")}</datalist></div><div class="sp"><label>ราคา (บาท)</label><input id="p" type="number" min="20"></div><div class="sp"><label>ส่งงานกี่วัน</label><input id="d" type="number" min="1" value="3"></div></div>
+  <label>รายละเอียด</label><textarea id="x" rows="4" maxlength="500" placeholder="บอกว่าคุณทำอะไรให้ลูกค้าบ้าง"></textarea><br><button class="btn sun" style="width:100%" id="ok">ลงบริการ</button>`);
+  o.querySelector("#pi").onclick=()=>pick(640,u=>{img=u;const e=o.querySelector("#pi");e.style.backgroundImage=`url(${u})`;e.style.height="140px";e.textContent=""});
+  o.querySelector("#ok").onclick=async()=>{const t=gv(o,"t"),p=+gv(o,"p"),x=gv(o,"x"),c=gv(o,"c");
+    if(!t||!c||!(p>=20)||!x){toast("กรอกชื่อ หมวด ราคา (ขั้นต่ำ 20) และรายละเอียดให้ครบ");return}
+    await db.collection("services").add({owner:myId,title:t,cat:c,price:p,days:+gv(o,"d")||3,desc:x,img,ts:Date.now()});closeM();toast("ลงบริการแล้ว")}}
+async function boot(){
+  try{user=await claude.use("user");db=await claude.use("db")}catch(e){}
+  if(db&&user){myId=await user.id();if(myId){myName0=(await user.me()).name||"";ADM=!!(await user.isOwner())||!!(await user.canEdit())}}
+  if(!db||!myId){render();return}
+  const col=n=>db.collection(n),m=s=>s.docs.map(d=>({id:d.id,...d.data()}));
+  db.doc("profiles/"+myId).get().then(s=>{if(!s.exists)db.doc("profiles/"+myId).set({name:myName0||"ผู้ใช้",bio:"",avatar:""})}).catch(()=>{});
+  db.doc("config/site").onSnapshot(s=>{C=s.exists?{...cl(),...s.data()}:cl();C.show={...DEF.show,...C.show};Object.keys(CATS).forEach(k=>delete CATS[k]);C.cats.forEach(c=>CATS[c.n]=[c.i,c.c]);render()});
+  col("members").onSnapshot(s=>{MS={};s.docs.forEach(d=>MS[d.id]=d.data());render()});col("bans").onSnapshot(s=>{B={};s.docs.forEach(d=>B[d.id]=d.data());banned=!!B[myId]&&!ADM;render()});
+  col("profiles").onSnapshot(s=>{P={};s.docs.forEach(d=>P[d.id]=d.data());render()});
+  col("services").onSnapshot(s=>{S=m(s).sort((a,b)=>b.ts-a.ts);render();const h=location.hash.slice(1);if(h&&!opened&&S.find(x=>x.id===h)){opened=1;detail(h)}});
+  db.doc("wallets/"+myId).onSnapshot(s=>{W=s.exists?s.data():{bal:0};render()});
+  col("orders").where("buyer","==",myId).onSnapshot(s=>{ob=m(s);render()});
+  col("orders").where("seller","==",myId).onSnapshot(s=>{os=m(s);render()});
+  col("threads").where("a","==",myId).onSnapshot(s=>{ta=m(s);chatUI()});
+  col("threads").where("b","==",myId).onSnapshot(s=>{tb=m(s);chatUI()});
+  render();chatUI()}
+/* เคอร์เซอร์รูปบวก หน่วงนิด ๆ เด้งเมื่อชี้ของ */
+(()=>{if(!matchMedia("(pointer:fine)").matches)return;document.body.classList.add("cc");
+  const c=document.createElement("div");c.className="cur";c.innerHTML="<b><i></i><i></i></b>";document.body.appendChild(c);
+  const slow=!matchMedia("(prefers-reduced-motion:reduce)").matches;let x=-60,y=-60,tx=x,ty=y;
+  addEventListener("pointermove",e=>{tx=e.clientX;ty=e.clientY});
+  (function f(){x+=(tx-x)*(slow?.17:1);y+=(ty-y)*(slow?.17:1);c.style.transform=`translate(${x}px,${y}px)`;requestAnimationFrame(f)})();
+  document.addEventListener("pointerover",e=>c.classList.toggle("hov",!!e.target.closest("a,button,input,textarea,select,.card,.tile,.bn,.ed,[onclick]")));
+  document.addEventListener("pointerdown",()=>c.classList.add("dn"));document.addEventListener("pointerup",()=>c.classList.remove("dn"))})();
+const PLANS={free:{n:"ฟรี",p:0,max:1,ms:3*36e5},mid:{n:"กลาง",p:99,max:5,ms:10*864e5},pro:{n:"ไม่จำกัด",p:299,max:1e9,ms:0}};
+let MS={};
+const cur=id=>{const m=MS[id]||{};return PLANS[m.plan]&&m.plan!="free"&&m.until>Date.now()?m.plan:"free"};
+const live=s=>s.exp===undefined||(s.exp===0?cur(s.owner)=="pro":s.exp>Date.now());
+const expFor=()=>{const m=PLANS[cur(myId)].ms;return m?Date.now()+m:0};
+const fmt=ms=>ms>=864e5?Math.ceil(ms/864e5)+" วัน":ms>=36e5?Math.floor(ms/36e5)+" ชม. "+Math.floor(ms%36e5/6e4)+" นาที":Math.max(1,Math.ceil(ms/6e4))+" นาที";
+const left=s=>!s.exp?"":live(s)?`<span class="tag" style="background:var(--sun);color:#3a2b00">เหลือ ${fmt(s.exp-Date.now())}</span>`:`<span class="tag">หมดเวลาแล้ว</span>`;
+const acc=id=>{const d=(MS[id]||{}).deco||{};return cur(id)=="pro"&&d.color?"border-color:"+d.color:""};
+const dt=ts=>new Date(ts).toLocaleDateString("th-TH");
+function canPost(){const pl=cur(myId),n=S.filter(s=>s.owner==myId&&live(s)).length,m=MS[myId]||{};
+  if(n>=PLANS[pl].max)return pl=="free"?"แพลนฟรีลงได้ครั้งละ 1 งาน รอให้หมดเวลาก่อน หรืออัปเกรดแพลน":"ลงครบ "+PLANS[pl].max+" งานแล้ว ลบอันเก่าหรืออัปเกรดแพลน";
+  if(pl=="free"&&new Date(m.last||0).toDateString()==new Date().toDateString())return"แพลนฟรีลงได้วันละ 1 งาน พรุ่งนี้ค่อยลงใหม่ หรืออัปเกรดแพลน";return""}
+const newSvc0=newSvc;newSvc=()=>{const g=canPost();if(g){toast(g);return}newSvc0()};
+function shopHead(){const pl=cur(myId),d=(MS[myId]||{}).deco||{},c=d.color||"var(--pri)",pro=pl=="pro";
+  return `<div class="panel" style="padding:0;overflow:hidden;${pro?"border-color:"+c:""}">${pro?`<div style="height:120px;background:${d.cover?`url(${d.cover}) center/cover`:c}"></div>`:""}<div class="row" style="padding:14px 18px"><div class="sp"><b>${esc(pname(myId))}</b><div class="mut">${esc(pro&&d.tag?d.tag:"แพลน"+PLANS[pl].n)}${pl!="free"?" · ถึง "+dt(MS[myId].until):""}</div></div>${pro?`<button class="btn out" onclick="deco()">ตกแต่งร้าน</button>`:""}<button class="btn" onclick="go('plans')">${pro?"ต่ออายุ":"อัปเกรด"}</button></div></div>`}
+function deco(){const d={...((MS[myId]||{}).deco||{})};const o=modal(`<h2>ตกแต่งร้าน</h2>${imgM(d.cover)}${fld("t","ข้อความใต้ชื่อร้าน",d.tag||"")}<label>สีประจำร้าน</label><input id="c" type="color" value="${d.color||"#0e6b5c"}" style="height:44px">${sv}`);imgB(o,1000,u=>d.cover=u);
+  o.querySelector("#ok").onclick=async()=>{d.tag=gv(o,"t");d.color=gv(o,"c");await db.doc("members/"+myId).set({...(MS[myId]||{}),deco:d});closeM();toast("บันทึกแล้ว")}}
+function plansV(){const pl=cur(myId),rows={free:["ลงขายได้วันละ 1 งาน","งานโชว์ 3 ชั่วโมง หมดเวลาแล้วหายไปจากตลาด"],mid:["ลงพร้อมกันได้ 5 งาน","แต่ละงานโชว์ 10 วัน"],pro:["ลงได้ไม่จำกัด ไม่มีวันหมดอายุ","ตกแต่งร้านได้เพิ่ม: รูปปก สีประจำร้าน ข้อความแนะนำ"]};
+  return `<h2 style="margin:14px 0 4px">แพลนสมาชิก</h2><p class="mut" style="margin:0 0 16px">จ่ายจากกระเป๋าเงิน ครั้งละ 30 วัน หมดอายุแล้วกลับเป็นแพลนฟรี</p><div class="plans">${Object.keys(PLANS).map(k=>{const p=PLANS[k],on=pl==k;return `<div class="panel plan ${k=="mid"?"hot":""}"><h3>${p.n}</h3><div class="price">${p.p?baht(p.p)+" / 30 วัน":"ฟรี"}</div><ul>${rows[k].map(x=>`<li>${x}</li>`).join("")}</ul>${on?`<div class="tag">แพลนของคุณ${k!="free"?" ถึง "+dt(MS[myId].until):""}</div>`:""}${k=="free"?"":`<button class="btn ${k=="mid"?"sun":""}" style="width:100%;margin-top:10px" onclick="subscribe('${k}')">${on?"ต่ออายุ":"สมัคร"} ${baht(p.p)}</button>`}</div>`}).join("")}</div>`}
+async function subscribe(k){const p=PLANS[k];if((W.bal||0)<p.p){modal(`<h2>เงินในกระเป๋าไม่พอ</h2><p>แพลน${p.n} ${baht(p.p)} ตอนนี้มี ${baht(W.bal||0)}</p><button class="btn sun" onclick="closeM();topup()">เติมเงิน</button>`);return}
+  const m=MS[myId]||{},base=cur(myId)==k?m.until:Date.now();
+  await db.doc("wallets/"+myId).set({bal:Math.round(((W.bal||0)-p.p)*100)/100});await db.doc("members/"+myId).set({...m,plan:k,until:base+30*864e5});toast("สมัครแพลน"+p.n+"แล้ว")}
+setInterval(()=>{const a=document.activeElement;if(myId&&!document.querySelector(".ov")&&!(a&&/INPUT|TEXTAREA|SELECT/.test(a.tagName)))render()},30000);
+boot();
+</script>
+</body>
+</html>
